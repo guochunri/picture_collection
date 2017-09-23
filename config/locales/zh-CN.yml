@@ -1,0 +1,39 @@
+zh-CN:
+
+  # 共用元素 #
+  f-hide: 隐藏
+  f-submit: 确认送出
+  f-options: 操作选项
+  notice-no-image: 尚无图片
+  f-image-upload: 图片上传
+
+  btn-edit: 编辑
+  btn-delete: 删除
+  btn-hide: 隐藏
+  btn-publish: 公开
+
+  # 后台操作面板 #
+  admin-product: 产品管理
+  admin-category: 分类管理
+
+  # 类型管理 #
+  category-group-index: 类型一览
+  category-group-new: 新增类型
+  category-group-edit: 编辑类型
+
+  f-category-group-name: 类型名称
+  f-category-group-categories: 类型分类一览
+
+  btn-category-group-new: 新增类型
+
+  # 分类管理 #
+  category-index: 分类一览
+  category-new: 新增分类
+  category-edit: 编辑分类
+
+  f-category-name: 分类名称
+  f-category-group: 类型
+  f-category-groups: 项目类型
+  f-category-products: 分类项目一览
+
+  btn-category-new: 新增分类

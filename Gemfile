@@ -52,6 +52,10 @@ gem 'ransack'
 gem 'carrierwave'
 gem 'mini_magick'
 
+# Language
+gem 'i18n'
+gem 'rails-i18n'
+
 
 group :development, :test do
   gem 'pry'

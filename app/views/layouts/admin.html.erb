@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= "巨会养车" %></title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <%= render "common/navbar" %>
+        <%= render "common/flashes" %>
+      </div>
+      <div class="row">
+        <div class="col-md-2 nav-sidebar">
+          <ul class="list-unstyled">
+             <!-- 分类管理 -->
+             <li><%= link_to admin_categories_path do %> <span class="fa fa-cubes"></span> <span><%= t('admin-category') %></span><% end %></li>
+          </ul>
+        </div>
+        <div class="col-md-10 admin-box">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+    <%= render "common/footer" %>
+  </body>
+</html>
