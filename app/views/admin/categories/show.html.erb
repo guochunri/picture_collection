@@ -1,2 +1,12 @@
 <!--=== 分类信息 ===-->
 <h1> <%= @category.name %> </h1>
+
+<!-- 所属主类别 -->
+<h3><%= t('f-category-group') %></h3>
+<%= @category.category_group.name %>
+
+<!-- 该分类下的商品一览 -->
+<h3><%= t('f-category-products') %></h3>
+<% @category.products.each do |product| %>
+  <li><%= link_to(product.name, admin_product_path(product)) %></li>
+<% end %>

@@ -11,7 +11,7 @@
   <!--=== 分类列表标题 ===-->
   <thead>
     <tr>
-      <th><%= t('id') %></th>
+      <th><%= t('f-category-group') %></th>
       <th><%= t('f-category-name') %></th>
       <th><%= t('f-options') %></th>
     </tr>
@@ -20,11 +20,12 @@
   <!--=== 分类列表內容 ===-->
   <% @categories.each do |category| %>
     <tr>
-      <td><%= category.id %></td>
-      <td><%= category.name %></td>
+      <td><%= category.category_group.name %></td>
+      <td><%= link_to(category.name, admin_category_path(category)) %></td>
       <!--=== 操作选项 ===-->
       <td>
         <%= link_to(t('btn-edit'), edit_admin_category_path(category), :class => 'btn btn-sm btn-default') %>
+        <%= link_to t('btn-delete'), admin_category_path(category), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-default"%>
       </td>
     </tr>
   <% end %>

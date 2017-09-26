@@ -5,9 +5,10 @@
 <%= simple_form_for [:admin, @category] do |f| %>
 
 <div class="group">
+  <%= f.select :category_group_id, @category_groups %>
   <%= f.input :name, :label => t('f-category-name') %>
 </div>
 
-<%= f.submit t('f-submit'), data: { disable_with: "Submitting..." } %>
+<%= f.submit t('f-submit'), class: 'btn btn-lg btn-default' %>
 
 <% end %>
