@@ -1,0 +1,10 @@
+<div class="col-md-12">
+  <h2><%= @product.name %></h2>
+  <p><%= @product.description %></p>
+  <div class="group">
+    <%= link_to(t('btn-edit'), edit_product_path(@product), class: "btn btn-primary pull-right")%>
+    <%= link_to t('btn-delete'), product_path(@product), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-primary pull-right"%>
+  </div>
+  <p><%= @product.user.name %></p>
+
+</div>

@@ -1,0 +1,17 @@
+<%= link_to "上传照片", new_product_path %>
+<div id="products">
+  <% @products.each do |product| %>
+  <div class="product">
+    <div class="product_content">
+      <div class="name">
+        <h2><%= link_to product.name, product%></h2>
+      </div>
+      <div class="data clearfix">
+        <p class="username">
+          Shared by
+          <%= product.user.name %></p>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>

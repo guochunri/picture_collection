@@ -1,0 +1,10 @@
+<%= simple_form_for @product do |f| %>
+<div class="panel-body">
+
+  <%= f.input :name, :label => t('f-product-name'), input_html: { class: 'width-50' } %>
+  <%= f.input :description, :label => t('f-product-description'), input_html: { class: 'height-200' } %>
+  <%= f.input :category_id, :label => t('f-product-category')%>
+</div>
+  <%= f.submit t('f-submit'), data: { disable_with: "Submitting..." } %>
+<% end %>
+<br>

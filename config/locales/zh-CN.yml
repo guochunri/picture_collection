@@ -12,6 +12,18 @@ zh-CN:
   btn-hide: 隐藏
   btn-publish: 公开
 
+  # 项目管理 #
+  product-index: 项目一览
+  product-new: 新增项目
+  product-edit: 编辑项目
+
+  f-product-images: 项目图片
+  f-product-name: 项目名称
+  f-product-description: 项目介绍
+  f-product-category: 项目分类
+
+  btn-product-new: 新增产品
+
   # 后台操作面板 #
   admin-product: 产品管理
   admin-category: 分类管理
