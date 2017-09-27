@@ -11,7 +11,8 @@ class ProductsController < ApplicationController
 
   def new
     @product = current_user.products.build
-    @categories = Category.all.order("category_group_id, name")
+    @category_groups = CategoryGroup.all.published
+    @categories = Category.all.order("category_group_id, name").published
   end
 
   def create
@@ -25,10 +26,12 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    @categories = Category.all.order("category_group_id, name")
+    @category_groups = CategoryGroup.all.map { |g| [g.name, g.id] }.published
+    @categories = Category.all.order("category_group_id, name").published
   end
 
   def update
+    @category_groups = CategoryGroup.all.map { |g| [g.name, g.id] }
     @categories = Category.all.map { |c| [c.name, c.id] }
 
     if @product.update(product_params)
@@ -50,7 +53,7 @@ class ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:name, :description, :category_id)
+    params.require(:product).permit(:name, :description, :category_group_id, :category_id)
   end
 
 end
