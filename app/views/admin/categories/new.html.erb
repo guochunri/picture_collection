@@ -1,14 +1,3 @@
 <!--=== 新增分类 ===-->
-<h2><%= t('category-new') %></h2>
-
-<!--=== 新增分类表单 ===-->
-<%= simple_form_for [:admin, @category] do |f| %>
-
-<div class="group">
-  <%= select_tag(:category_group_id, options_for_select(@category_groups)) %>
-  <%= f.input :name, :label => t('f-category-name') %>
-</div>
-
-<%= f.submit t('f-submit'), data: { disable_with: "Submitting..." } %>
-
-<% end %>
+<h2><span class="fa fa-file-text-o"></span> <%= t('category-new') %></h2>
+<%= render('form') %>

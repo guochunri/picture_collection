@@ -5,6 +5,7 @@ class Admin::CategoriesController < ApplicationController
 
   def index
     @categories = Category.all
+    @category_groups = CategoryGroup.all
   end
 
   def show
@@ -47,6 +48,18 @@ class Admin::CategoriesController < ApplicationController
     @category = Category.find(params[:id])
     @category.destroy
     redirect_to admin_categories_path
+  end
+
+  def publish
+    @category = Category.find(params[:id])
+    @category.publish!
+    redirect_to :back
+  end
+
+  def hide
+    @category = Category.find(params[:id])
+    @category.hide!
+    redirect_to :back
   end
 
   private

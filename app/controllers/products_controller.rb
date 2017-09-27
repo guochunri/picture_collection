@@ -11,6 +11,7 @@ class ProductsController < ApplicationController
 
   def new
     @product = current_user.products.build
+    @categories = Category.all.order("category_group_id, name")
   end
 
   def create
@@ -24,9 +25,12 @@ class ProductsController < ApplicationController
   end
 
   def edit
+    @categories = Category.all.order("category_group_id, name")
   end
 
   def update
+    @categories = Category.all.map { |c| [c.name, c.id] }
+
     if @product.update(product_params)
       redirect_to @product
     else

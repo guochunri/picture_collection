@@ -3,7 +3,7 @@
 
   <%= f.input :name, :label => t('f-product-name'), input_html: { class: 'width-50' } %>
   <%= f.input :description, :label => t('f-product-description'), input_html: { class: 'height-200' } %>
-  <%= f.input :category_id, :label => t('f-product-category')%>
+  <%= f.input :category_id, :label => t('f-product-category'), :collection => @categories, :checked => @product.category, input_html: { class: 'width-50' } %>
 </div>
   <%= f.submit t('f-submit'), data: { disable_with: "Submitting..." } %>
 <% end %>
