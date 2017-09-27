@@ -19,6 +19,9 @@ Rails.application.routes.draw do
         post :hide
       end
     end
+
+    resources :products
+    
   end
 
   resources :products
