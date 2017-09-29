@@ -1,6 +1,20 @@
 <%= simple_form_for @product do |f| %>
 <div class="panel-body">
+  <!-- 判断是否为new页面 -->
+  <% if @product.new_record? %>
+  <% else %>
+  <!-- 显示商品图片 -->
+  <div class='group'>
+    <% if @product.product_images.present? %>
+      <% @product.product_images.each do |p| %>
+        <%= image_tag p.image.thumb.url %>
+      <% end %>
+    <% end %>
+  </div>
+  <% end %>
 
+  <!-- 上传图片 -->
+  <%= f.file_field :product_image, :multiple => true, name: 'product_images[image][]' %>
   <%= f.input :name, :label => t('f-product-name'), input_html: { class: 'width-50' } %>
   <%= f.input :description, :label => t('f-product-description'), input_html: { class: 'height-200' } %>
   <%= f.input :category_group_id, :label => t('f-product-category'), :collection => @category_groups, input_html: { class: 'width-50' } %>
