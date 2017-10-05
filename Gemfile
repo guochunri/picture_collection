@@ -63,6 +63,9 @@ group :development, :test do
   gem 'sqlite3'
 end
 
+# Select
+gem "select2-rails"
+
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'

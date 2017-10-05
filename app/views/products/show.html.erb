@@ -5,8 +5,8 @@
       <% @product_images.each_with_index do |p| %>
         <!-- 显示所有商品图片 -->
 
-          <%= image_tag(p.image.medium.url, class: 'list-image') %>
-        
+          <%= image_tag(p.image.url, class: 'list-image') %>
+
       <% end %>
     <% else %>
       <%= image_tag('http://placehold.it/400x400&text=No Pic', class: 'thumbnail') %>

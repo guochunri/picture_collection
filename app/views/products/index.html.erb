@@ -1,17 +1,27 @@
-<%= link_to "上传照片", new_product_path %>
-<div id="products">
-  <% @products.each do |product| %>
-  <div class="product">
-    <div class="product_content">
-      <div class="name">
-        <h2><%= link_to product.name, product%></h2>
+<div class='col-xs-12 col-md-8 '>
+  <div class="row">
+    <%= link_to "上传照片", new_product_path %>
+
+    <div id="products">
+      <% @products.each do |product| %>
+      <div class="product">
+        <div class="product_image">
+          <%= link_to product_path(product) do %>
+          <%= image_tag(product.product_images[0].image.url )%>
+          <% end %>
+        </div>
+        <div class="product_content">
+          <div class="name">
+            <h2><%= link_to product.name, product%></h2>
+          </div>
+          <div class="data clearfix">
+            <p class="username">
+              Shared by
+              <%= product.user.name %></p>
+          </div>
+        </div>
       </div>
-      <div class="data clearfix">
-        <p class="username">
-          Shared by
-          <%= product.user.name %></p>
-      </div>
+      <% end %>
     </div>
   </div>
-  <% end %>
 </div>

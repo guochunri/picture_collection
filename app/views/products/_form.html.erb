@@ -17,9 +17,16 @@
   <%= f.file_field :product_image, :multiple => true, name: 'product_images[image][]' %>
   <%= f.input :name, :label => t('f-product-name'), input_html: { class: 'width-50' } %>
   <%= f.input :description, :label => t('f-product-description'), input_html: { class: 'height-200' } %>
-  <%= f.input :category_group_id, :label => t('f-product-category'), :collection => @category_groups, input_html: { class: 'width-50' } %>
-  <%= f.input :category_id, :label => t('f-product-category'), :collection => @categories, :checked => @product.category, input_html: { class: 'width-50' } %>
+  <%= f.label t('f-product-category_group') %>
+  <%= f.select :category_group_id, CategoryGroup.published.map{ |a| [a.name, a.id] }, {}, :class => "form-control" %>
+  <%= f.label t('f-product-category') %>
+  <%= f.select :category_id, Category.published.map{ |c| [c.name, c.id] }, {}, :class => "form-control" %>
 </div>
   <%= f.submit t('f-submit'), data: { disable_with: "Submitting..." } %>
 <% end %>
 <br>
+
+<script>
+  $("#product_category_id").select2( { theme: "bootstrap"} );
+  $("#product_category_group_id").select2( { theme: "bootstrap"} );
+</script>
