@@ -14,6 +14,7 @@
       <th><%= t('f-product-name') %></th>
       <th><%= t('f-product-category') %></th>
       <th><%= t('f-category-group') %></th>
+      <th><%= t('f-procuct-status') %></th>
       <th><%= t('f-options') %></th>
     </tr>
   </thead>
@@ -24,12 +25,14 @@
     <td><%= link_to(product.name, admin_product_path(product)) %></td>
     <td><%= product.category.name %></td>
     <td><%= product.category.category_group.name %></td>
+    <td> <%= product.aasm_state %> </td>
     <!--=== 操作选项 ===-->
     <td>
       <div class="action-box">
         <%= link_to(edit_admin_product_path(product), class: "btn btn-md btn-default") do %>
         <span class="fa fa-pencil"></span>
         <% end %>
+        <%= render "admin/products/state_option", product: product %>
       </div>
     </td>
   </tr>

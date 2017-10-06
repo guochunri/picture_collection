@@ -20,8 +20,13 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :products
-    
+    resources :products do
+      member do
+        post :approve
+        post :unapprove
+      end
+    end
+
   end
 
   resources :products

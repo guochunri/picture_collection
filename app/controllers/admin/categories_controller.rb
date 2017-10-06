@@ -14,12 +14,11 @@ class Admin::CategoriesController < ApplicationController
 
   def new
     @category = Category.new
-    @category_groups = CategoryGroup.all.map { |g| [g.name, g.id] }
+    @category_groups = CategoryGroup.all
   end
 
   def create
     @category = Category.new(category_params)
-    @category.category_group_id = params[:category_group_id]
 
     if @category.save
       redirect_to admin_categories_path

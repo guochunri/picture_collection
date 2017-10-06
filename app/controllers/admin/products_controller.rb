@@ -11,4 +11,16 @@ class Admin::ProductsController < ApplicationController
     @product = Product.find(params[:id])
   end
 
+  def approve
+    @product = Product.find(params[:id])
+    @product.agree!
+    redirect_to :back
+  end
+
+  def unapprove
+    @product = Product.find(params[:id])
+    @product.disagree!
+    redirect_to :back
+  end
+
 end

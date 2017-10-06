@@ -6,4 +6,21 @@ class Product < ApplicationRecord
   belongs_to :user
   has_many :product_images, dependent: :destroy
   accepts_nested_attributes_for :product_images
+
+  include AASM
+
+  aasm do
+    state :waitting_for_approval, initial: true
+    state :approved
+    state :rejected
+
+    event :agree do
+      transitions from: :waitting_for_approval,         to: :approved
+    end
+
+    event :disagree do
+      transitions from: :waitting_for_approval,     to: :rejected
+    end
+  end
+
 end

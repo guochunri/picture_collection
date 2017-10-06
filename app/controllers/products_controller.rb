@@ -13,8 +13,8 @@ class ProductsController < ApplicationController
   def new
     @product = current_user.products.build
     @product_image = @product.product_images.build
-    @category_groups = CategoryGroup.all.published
-    @categories = Category.all.order("category_group_id, name").published
+    @category_groups = CategoryGroup.published
+    @categories = Category.order("category_group_id, name").published
   end
 
   def create
