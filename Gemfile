@@ -41,8 +41,6 @@ gem 'devise'
 # front end
 gem 'bootstrap-sass'
 gem 'simple_form'
-gem 'will_paginate'
-gem 'will_paginate-bootstrap'
 gem 'font-awesome-rails'
 
 # Search
@@ -57,6 +55,8 @@ gem 'i18n'
 gem 'rails-i18n'
 gem "devise-i18n"
 
+# Paginate
+gem 'kaminari'
 
 group :development, :test do
   gem 'pry'

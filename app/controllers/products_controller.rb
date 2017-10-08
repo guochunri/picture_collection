@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @products = Product.all.order("created_at DESC")
+    @products = Product.order("created_at DESC").page(params[:page]).per(12)
   end
 
   def show

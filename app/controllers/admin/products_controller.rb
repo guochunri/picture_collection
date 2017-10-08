@@ -4,7 +4,7 @@ class Admin::ProductsController < ApplicationController
   layout "admin"
 
   def index
-    @products = Product.all.order("created_at DESC")
+    @products = Product.order("created_at DESC").page(params[:page]).per(10)
   end
 
   def show
