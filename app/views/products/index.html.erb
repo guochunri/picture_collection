@@ -1,9 +1,7 @@
-<div class='col-xs-12 col-md-8 '>
+<div class="col-md-10 col-md-offset-1">
   <div class="row">
-    <%= link_to "上传照片", new_product_path %>
-
-    <div id="products">
-      <% @products.each do |product| %>
+    <% @products.each do |product| %>
+    <div class='col-xs-12 col-sm-6 col-md-4 '>
       <div class="product">
         <div class="product_image">
           <%= link_to product_path(product) do %>
@@ -12,16 +10,16 @@
         </div>
         <div class="product_content">
           <div class="name">
-            <h2><%= link_to product.name, product%></h2>
+            <h2><%= link_to product.name, product%> </h2>
           </div>
           <div class="data clearfix">
-            <p class="username">
-              Shared by
-              <%= product.user.name %>   <%= product.aasm_state %></p>
+            <p class="status">
+              <%= t(product.aasm_state, :scope => "product.aasm_state") %>
+              <div class="time"> <%= product.created_at.strftime("%Y/%m/%d %I:%M %p") %></div></p>
           </div>
         </div>
       </div>
-      <% end %>
     </div>
+    <% end %>
   </div>
 </div>

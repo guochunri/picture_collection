@@ -23,12 +23,12 @@
 
 
 /*===== Users 用戶中心 =====*/
-.user_setup{
+.user_setup {
   height: 750px;
   background: image_url("user_background.jpg") no-repeat scroll top center/ cover;
 }
 
-.user_setup_content{
+.user_setup_content {
   background: #fff;
   margin-top: 135px;
   padding-top: 20px;
@@ -36,34 +36,33 @@
   box-shadow: 1px 3px 5px #333;
   border: 5px solid #555;
   border-radius: 25px;
-
-  opacity:0.95;
+  opacity: 0.95;
   filter:alpha(opacity=95);
 
-  h2{
+  h2 {
     text-align: center;
   }
 
-  .psw{
+  .psw {
     float: right;
     margin-top: -33px;
     position: relative;
   }
 
-  .account{
+  .account {
     text-align: center;
   }
 
-  .form-inputs{
+  .form-inputs {
     margin-top: 25px;
   }
 
-  .form-actions{
+  .form-actions {
     text-align: center;
     margin-top: 35px;
     margin-bottom: 25px;
 
-    .button{
+    .button {
       color: #fff;
       background-color: #4A6BB5;
       border-color: #4A6BB5;
@@ -72,7 +71,7 @@
       width: 100%;
     }
 
-    .button:hover{
+    .button:hover {
       background-color: #4A99B5;
       border-color: #4A99B5;
       color: #fff;
@@ -80,11 +79,11 @@
   }
 }
 
-.account-box{
+.account-box {
   background: image_url("account_background.jpg") no-repeat scroll top center/ cover;
 }
 
-.account-content{
+.account-content {
   background: #fff;
   margin-top: 50px;
   margin-bottom: 50px;
@@ -92,24 +91,23 @@
   box-shadow: 1px 3px 5px #333;
   border: 5px solid #555;
   border-radius: 25px;
-
-  opacity:0.95;
+  opacity: 0.95;
   filter:alpha(opacity=95);
 
-  h2{
+  h2 {
     text-align: center;
   }
 
-  .form-inputs{
+  .form-inputs {
     margin-top: 25px;
   }
 
-  .form-actions{
+  .form-actions {
     text-align: center;
     margin-top: 35px;
     margin-bottom: 25px;
 
-    .button{
+    .button {
       color: #fff;
       background-color: #4A6BB5;
       border-color: #4A6BB5;
@@ -118,85 +116,287 @@
       width: 100%;
     }
 
-    .button:hover{
+    .button:hover {
       background-color: #4A99B5;
       border-color: #4A99B5;
       color: #fff;
     }
   }
 }
-
 /*===== Product  =====*/
-
 .wrapper {
-	width: 80%;
-	margin: 0 auto;
+  width: 80%;
+  margin: 0 auto;
 }
 
-.clearfix:before, .clearfix:after {
-	content: " ";
-	display: table;
+.clearfix:after,
+.clearfix:before {
+  content: " ";
+  display: table;
 }
 
 .clearfix:after {
-	clear: both;
+  clear: both;
 }
 
-#products {
-	.product {
-		background: #F8F9FA;
-		width: 30%;
-		float: left;
-		margin: 1rem 1.5%;
-		border: 1px solid #E4E4E4;
-		border-radius: 0.3rem;
-		.product_image {
-			height: 200px;
-			overflow: hidden;
-			img {
-				width: 100%;
-				border-radius: .3rem .3rem 0 0;
-        -webkit-transition: all .3s ease-out;
-        -moz-transition: all .3s ease-out;
-        -o-transition: all .3s ease-out;
-        transition: all .3s ease-out;
+.product {
+  background: #F8F9FA;
+  float: left;
+  margin: 1rem 1.5%;
+  border: 1px solid #E4E4E4;
+  border-radius: 0.3rem;
+
+  .product_image {
+    height: 200px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      border-radius: 0.3rem 0.3rem 0 0;
+      -webkit-transition: all 0.3s ease-out;
+      -moz-transition: all 0.3s ease-out;
+      -o-transition: all 0.3s ease-out;
+      transition: all 0.3s ease-out;
+
+      &:hover {
+        transform: scale(1.075);
+      }
+    }
+  }
+
+  .product_content {
+    h2 {
+      margin: 0;
+      font-weight: 100;
+      padding: 1rem 5%;
+      border-bottom: 1px solid #E4E4E4;
+      font-size: 1.25rem;
+
+      a {
+        text-decoration: none;
+        color: #333233;
+
         &:hover {
-          transform: scale(1.075);
+          color: #50A7C7;
         }
-			}
-		}
-		.product_content {
-			h2 {
-				margin: 0;
-				font-weight: 100;
-				padding: 1rem 5%;
-				border-bottom: 1px solid #E4E4E4;
-				font-size: 1.25rem;
-				a {
-					text-decoration: none;
-					color: #333233;
-					&:hover {
-						color: #50A7C7;
-					}
-				}
-			}
-			.data {
-				padding: .75rem 5%;
-				color: #969696;
-				.username, .buttons {
-					margin: 0;
-					font-size: .8rem;
-				}
-				.username {
-					float: left;
-				}
-				.buttons {
-					float: right;
-					span {
-						margin-left: .5rem;
-					}
-				}
-			}
-		}
-	}
+      }
+    }
+
+    .data {
+      padding: 0.75rem 5%;
+      color: #969696;
+
+      .buttons,
+      .username {
+        margin: 0;
+        font-size: 0.8rem;
+      }
+
+      .status {
+        float: left;
+        font-size: 1.25rem;
+      }
+
+      .buttons {
+        float: right;
+
+        span {
+          margin-left: 0.5rem;
+        }
+      }
+    }
+  }
+}
+
+.time {
+  font-size: 1.25rem;
+  margin-left: 13rem;
+}
+
+.list-image {
+  float: left;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  height: 300px;
+  border-radius: 10px;
+}
+
+.list-image:last-of-type {
+  margin-right: 0;
+}
+
+.new-product {
+  text-align: center;
+}
+/*===== Control 后台-控制选单 =====*/
+.nav-sidebar {
+  margin-top: 30px;
+
+  span {
+    margin-left: 2.5px;
+  }
+
+  li {
+    max-width: 250px;
+    margin-bottom: 10px;
+    padding: 12.5px 15px;
+    background-color: #546270;
+    border: 1px solid #4a4a4a;
+    border-radius: 10px;
+  }
+
+  a {
+    color: #fff;
+  }
+
+  a:hover {
+    color: #44c7f4;
+  }
+}
+/*===== Admin 后台-通用设置 =====*/
+.admin-box {
+  padding: 25px;
+
+  table {
+    box-shadow: 0 0 3px #999;
+  }
+
+  thead {
+    background-color: #02061A;
+    font-size: 16px;
+    color: #fff;
+  }
+
+  tr {
+    border: 1px solid #ccc;
+  }
+
+  h2 {
+    text-align: center;
+    margin-top: 35px;
+  }
+
+  a {
+    color: #666;
+  }
+
+  a:active,
+  a:focus,
+  a:hover {
+    color: #44c7f4;
+  }
+
+  .description-box {
+    max-width: 550px;
+  }
+  /*===== 操作选项 =====*/
+  .action-box {
+    min-width: 100px;
+    margin-top: -3.5px;
+    margin-bottom: -3.5px;
+
+    .show-btn {
+      background-color: #eee !important;
+    }
+  }
+  /*===== 按钮设置 =====*/
+  .btn-default {
+    padding: 5px 10px;
+    background-color: #fff;
+    border: 1.5px solid #ccc;
+  }
+
+  .btn-info {
+    padding: 10px 15px;
+    border: 1.5px solid #ccc;
+    color: #fff;
+  }
+
+  .btn-default:hover {
+    opacity: 0.85;
+  }
+
+  .btn-info:hover {
+    color: #fff;
+  }
+  /*===== 产品顏色设置 =====*/
+  .admin-color-circle {
+    button {
+      border: none;
+      outline: none;
+      border-radius: 25px;
+      color: #ffffff;
+      padding: 10px;
+      margin: 0 2px;
+    }
+
+    button:active {
+      outline: none;
+    }
+  }
+  /*===== 换页按钮 =====*/
+  .admin-page-box {
+    margin-top: 75px;
+
+    a {
+      background-color: #ddd;
+    }
+
+    a:hover {
+      background-color: #ccc;
+      color: #666 !important;
+    }
+  }
+}
+/*===== Admin-Form 后台表单设置 =====*/
+.admin-data-box {
+  hr {
+    height: 1.5px;
+    background-color: #ccc;
+    margin: 30px 0;
+  }
+
+  h2 {
+    color: #3D537F;
+  }
+
+  input {
+    height: 40px;
+  }
+
+  select {
+    height: 35px;
+    min-width: 175px;
+    margin-bottom: 10px;
+    background-color: #fff;
+  }
+
+  .hidden-box {
+    input {
+      height: 16px !important;
+    }
+    font-size: 16px;
+  }
+  /*===== 送出按钮 =====*/
+  .form-actions {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 25px;
+
+    .btn {
+      width: 100%;
+      color: #fff;
+      background-color: #4A6BB5;
+      border-color: #4A6BB5;
+      font-size: 16px;
+      letter-spacing: 1px;
+    }
+
+    .btn:hover {
+      background-color: #4A99B5;
+      border-color: #4A99B5;
+      color: #fff;
+    }
+  }
 }

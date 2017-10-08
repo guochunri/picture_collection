@@ -1,19 +1,15 @@
 <!--=== 标题 ===-->
 <!-- <h2><%= t('product-index') %></h2> -->
 
-<!--=== 新增商品 ===-->
-<div class='pull-right'>
-  <%= link_to(t('btn-product-new'), new_admin_product_path, :class => 'btn btn-md btn-info')%>
-</div>
-
 <!--=== 商品列表 ===-->
 <table class='table table-hover'>
   <!--=== 商品列表标题 ===-->
   <thead>
     <tr>
-      <th><%= t('f-product-name') %></th>
-      <th><%= t('f-product-category') %></th>
+      <th><%= t('nickname') %></th>
       <th><%= t('f-category-group') %></th>
+      <th><%= t('f-product-category') %></th>
+      <th><%= t('created_at')%></th>
       <th><%= t('f-procuct-status') %></th>
       <th><%= t('f-options') %></th>
     </tr>
@@ -22,15 +18,16 @@
   <!--=== 商品列表內容 ===-->
   <% @products.each do |product| %>
   <tr>
-    <td><%= link_to(product.name, admin_product_path(product)) %></td>
-    <td><%= product.category.name %></td>
+    <td><%= link_to(product.user.name, admin_product_path(product)) %></td>
     <td><%= product.category.category_group.name %></td>
-    <td> <%= product.aasm_state %> </td>
+    <td><%= product.category.name %></td>
+    <td><%= product.created_at.strftime("%Y/%m/%d %I:%M %p") %></td>
+    <td> <%= t(product.aasm_state, :scope => "product.aasm_state") %> </td>
     <!--=== 操作选项 ===-->
     <td>
       <div class="action-box">
-        <%= link_to(edit_admin_product_path(product), class: "btn btn-md btn-default") do %>
-        <span class="fa fa-pencil"></span>
+        <%= link_to(admin_product_path(product), class: "btn btn-md btn-default", :method => :delete, :data => { :confirm => "Are you sure?" }) do%>
+        <span class="fa fa-trash"></span>
         <% end %>
         <%= render "admin/products/state_option", product: product %>
       </div>

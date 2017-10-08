@@ -4,11 +4,18 @@ class Admin::ProductsController < ApplicationController
   layout "admin"
 
   def index
-    @products = Product.all
+    @products = Product.all.order("created_at DESC")
   end
 
   def show
     @product = Product.find(params[:id])
+    @product_images = @product.product_images.all
+  end
+
+  def destroy
+    @product = Product.find(params[:id])
+    @product.destroy
+    redirect_to admin_products_path
   end
 
   def approve

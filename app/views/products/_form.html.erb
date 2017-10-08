@@ -1,32 +1,38 @@
-<%= simple_form_for @product do |f| %>
-<div class="panel-body">
-  <!-- 判断是否为new页面 -->
-  <% if @product.new_record? %>
-  <% else %>
-  <!-- 显示商品图片 -->
-  <div class='group'>
-    <% if @product.product_images.present? %>
-      <% @product.product_images.each do |p| %>
-        <%= image_tag p.image.thumb.url %>
-      <% end %>
+<div class="col-md-8 col-md-offset-2">
+  <div class="row">
+    <%= simple_form_for @product do |f| %>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <!-- 判断是否为new页面 -->
+        <% if @product.new_record? %>
+      <% else %>
+        <!-- 显示商品图片 -->
+        <div class='group'>
+          <% if @product.product_images.present? %>
+          <% @product.product_images.each do |p| %>
+          <%= image_tag p.image.thumb.url %>
+          <% end %>
+          <% end %>
+        </div>
+        <% end %>
+
+        <!-- 上传图片 -->
+        <%= f.file_field :product_image, :multiple => true, name: 'product_images[image][]', :class => "form-control" %>
+        <%= f.input :name, :label => t('f-product-name'), input_html: { class: 'width-50' } %>
+        <%= f.input :description, :label => t('f-product-description'), input_html: { class: 'height-200' } %>
+        <%= f.label t('f-product-category_group') %>
+        <%= f.select :category_group_id, CategoryGroup.published.map{ |a| [a.name, a.id] }, {}, :class => "form-control"  %>
+        <%= f.label t('f-product-category') %>
+        <%= f.select :category_id, Category.published.map{ |c| [c.name, c.id] }, {}, :class => "form-control" %>
+      </div>
+    </div>
+    <%= f.submit t('f-submit'), data: { disable_with: "Submitting..." }, class: "btn btn-primary" %>
     <% end %>
+    <br>
   </div>
-  <% end %>
-
-  <!-- 上传图片 -->
-  <%= f.file_field :product_image, :multiple => true, name: 'product_images[image][]' %>
-  <%= f.input :name, :label => t('f-product-name'), input_html: { class: 'width-50' } %>
-  <%= f.input :description, :label => t('f-product-description'), input_html: { class: 'height-200' } %>
-  <%= f.label t('f-product-category_group') %>
-  <%= f.select :category_group_id, CategoryGroup.published.map{ |a| [a.name, a.id] }, {}, :class => "form-control" %>
-  <%= f.label t('f-product-category') %>
-  <%= f.select :category_id, Category.published.map{ |c| [c.name, c.id] }, {}, :class => "form-control" %>
 </div>
-  <%= f.submit t('f-submit'), data: { disable_with: "Submitting..." } %>
-<% end %>
-<br>
 
-<script>
+<!-- <script>
   $("#product_category_id").select2( { theme: "bootstrap"} );
   $("#product_category_group_id").select2( { theme: "bootstrap"} );
-</script>
+</script> -->

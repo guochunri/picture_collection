@@ -1,4 +1,9 @@
 zh-CN:
+  product:
+    aasm_state:
+      waitting_for_approval: 等待审核
+      approved: 审核通过
+      rejected: 不合格
 
   # 共用元素 #
   f-hide: 隐藏
@@ -29,6 +34,10 @@ zh-CN:
   # 后台操作面板 #
   admin-product: 产品管理
   admin-category: 分类管理
+
+  # 产品管理
+  nickname: 昵称
+  created_at: 创建时间
 
   # 类型管理 #
   category-group-index: 类型一览
