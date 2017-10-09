@@ -55,6 +55,12 @@ gem 'i18n'
 gem 'rails-i18n'
 gem "devise-i18n"
 
+# Select
+gem 'select2-rails'
+
+# Status
+gem 'aasm'
+
 # Paginate
 gem 'kaminari'
 
@@ -63,12 +69,6 @@ group :development, :test do
   gem 'awesome_rails_console'
   gem 'sqlite3'
 end
-
-# Select
-gem 'select2-rails'
-
-# Status
-gem 'aasm'
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.

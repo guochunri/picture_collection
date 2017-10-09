@@ -21,6 +21,10 @@ class Product < ApplicationRecord
     event :disagree do
       transitions from: :waitting_for_approval,     to: :rejected
     end
+
+    event :update_product do
+      transitions from: [:waitting_for_approval, :approved, :rejected], to: :waitting_for_approval
+    end
   end
 
 end

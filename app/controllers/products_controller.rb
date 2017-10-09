@@ -40,6 +40,7 @@ class ProductsController < ApplicationController
   def update
     @category_groups = CategoryGroup.all.map { |g| [g.name, g.id] }
     @categories = Category.all.map { |c| [c.name, c.id] }
+    @product.update_product!
 
     if params[:product_images] != nil
       @product.product_images.destroy_all
