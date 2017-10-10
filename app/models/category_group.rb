@@ -1,6 +1,7 @@
 class CategoryGroup < ApplicationRecord
   validates :name, presence: true
   has_many :categories
+  has_many :products
 
   scope :published, -> { where(is_hidden: false) }
 
@@ -13,5 +14,5 @@ class CategoryGroup < ApplicationRecord
     self.is_hidden = true
     self.save
   end
-  
+
 end

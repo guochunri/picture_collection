@@ -20,10 +20,16 @@
         <%= f.file_field :product_image, :multiple => true, name: 'product_images[image][]', :class => "form-control" %>
         <%= f.input :name, :label => t('f-product-name'), input_html: { class: 'width-50' } %>
         <%= f.input :description, :label => t('f-product-description'), input_html: { class: 'height-200' } %>
-        <%= f.label t('f-product-category_group') %>
-        <%= f.select :category_group_id, CategoryGroup.published.map{ |a| [a.name, a.id] }, {}, :class => "form-control"  %>
-        <%= f.label t('f-product-category') %>
-        <%= f.select :category_id, Category.published.map{ |c| [c.name, c.id] }, {}, :class => "form-control" %>
+
+        <div class="field">
+          <%= f.label :category_group_id, t('f-product-category') %><br />
+          <%= f.collection_select :category_group_id, CategoryGroup.published.order(:name), :id, :name, include_blank: true %>
+        </div>
+        <div class="field">
+          <%= f.label :category_id, t('f-product-category_group') %><br />
+          <%= f.grouped_collection_select :category_id, CategoryGroup.published.order(:name), :categories, :name, :id, :name, include_blank: true %>
+        </div>
+
       </div>
     </div>
     <%= f.submit t('f-submit'), data: { disable_with: "Submitting..." }, class: "btn btn-primary" %>
@@ -32,7 +38,7 @@
   </div>
 </div>
 
-<!-- <script>
-  $("#product_category_id").select2( { theme: "bootstrap"} );
-  $("#product_category_group_id").select2( { theme: "bootstrap"} );
-</script> -->
+<script>
+  $("#product_category_group_id").select2( { theme: "bootstrap", placeholder: "请选择分类", width: '15%'} );
+  $("#product_category_id").select2( { theme: "bootstrap" } );
+</script>

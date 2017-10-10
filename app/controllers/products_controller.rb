@@ -14,7 +14,7 @@ class ProductsController < ApplicationController
     @product = current_user.products.build
     @product_image = @product.product_images.build
     @category_groups = CategoryGroup.published
-    @categories = Category.order("category_group_id, name").published
+    @categories = Category.published.order("category_group_id, name")
   end
 
   def create
@@ -33,13 +33,13 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    @category_groups = CategoryGroup.published.all.map { |g| [g.name, g.id] }
-    @categories = Category.all.order("category_group_id, name").published
+    @category_groups = CategoryGroup.published.map { |g| [g.name, g.id] }
+    @categories = Category.published.order("category_group_id, name")
   end
 
   def update
-    @category_groups = CategoryGroup.all.map { |g| [g.name, g.id] }
-    @categories = Category.all.map { |c| [c.name, c.id] }
+    @category_groups = CategoryGroup.published.map { |g| [g.name, g.id] }
+    @categories = Category.published.map { |c| [c.name, c.id] }
     @product.update_product!
 
     if params[:product_images] != nil

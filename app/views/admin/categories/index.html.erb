@@ -72,10 +72,12 @@
             <%= link_to(edit_admin_category_path(category), class: "btn btn-md btn-default") do %>
               <span class="fa fa-pencil"></span>
             <% end %>
-
+            <%= link_to(admin_category_path(category), class: "btn btn-md btn-default", :method => :delete, :data => { :confirm => "Are you sure?" }) do%>
+            <span class="fa fa-trash"></span>
+            <% end %>
             <!-- 发布 / 隐藏 -->
             <!-- <%= render_category_publish_or_hide(category) %> -->
-            <% if category.is_hidden %>
+            <!-- <% if category.is_hidden %>
               <%= link_to(publish_admin_category_path(category), :method => :post, class: "btn btn-md btn-default show-btn") do %>
                 <span class="fa fa-eye"></span>
               <% end %>
@@ -83,7 +85,7 @@
               <%= link_to(hide_admin_category_path(category), :method => :post, data: { confirm: "確定隐藏該分类？" }, class: "btn btn-md btn-default") do %>
                 <span class="fa fa-eye-slash"></span>
               <% end %>
-            <% end %>
+            <% end %> -->
           </td>
         </tr>
       <% end %>
