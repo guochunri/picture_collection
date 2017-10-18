@@ -19,7 +19,19 @@
             <!-- 产品管理 -->
             <li><%= link_to admin_products_path do %> <span class="fa fa-cube"></span> <span><%= t('admin-product') %></span><% end %></li>
              <!-- 分类管理 -->
-             <li><%= link_to admin_categories_path do %> <span class="fa fa-cubes"></span> <span><%= t('admin-category') %></span><% end %></li>
+            <li><%= link_to admin_categories_path do %> <span class="fa fa-cubes"></span> <span><%= t('admin-category') %></span><% end %></li>
+
+              <%= form_tag search_admin_products_path, :method => :get, class: "" do %>
+                <div class="input-group search-box">
+                  <input type="text" class="form-control" name="keyword" placeholder="<%= t('keywaods')%>" value="<%= params[:keyword] %>">
+                  <div class="input-group-btn">
+                    <button class="btn btn-default" type="submit">
+                      <span><i class="fa fa-search"></i></span>
+                    </button>
+                  </div>
+                </div>
+              <% end %>
+
           </ul>
         </div>
         <div class="col-md-10 admin-box">

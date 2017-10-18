@@ -64,6 +64,9 @@ gem 'aasm'
 # Paginate
 gem 'kaminari'
 
+# Search
+gem 'ransack'
+
 group :development, :test do
   gem 'pry'
   gem 'awesome_rails_console'

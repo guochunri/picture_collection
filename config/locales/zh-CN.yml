@@ -32,7 +32,7 @@ zh-CN:
   product-edit: 编辑项目
 
   f-product-images: 项目图片
-  f-product-name: 项目名称
+  f-product-name: 车牌
   f-product-description: 项目介绍
   f-product-category: 项目分类
   f-product-category_group: 项目类型
@@ -43,6 +43,11 @@ zh-CN:
   # 后台操作面板 #
   admin-product: 产品管理
   admin-category: 分类管理
+
+  # 搜索栏
+  keywaods: 请输入昵称/车牌
+  search-blank: 搜索内容不能为空，请输入些关键字试试呗
+  search-no-data: 没有符合搜索条件的项目哦！
 
   # 产品管理
   nickname: 昵称

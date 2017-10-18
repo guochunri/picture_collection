@@ -1,0 +1,52 @@
+<!--=== 搜索结果，没有符合条件的数据 ===-->
+<% if @query_string.blank? %>
+<div class="search-error">
+  <h2><%= t('search-blank')%></h2>
+</div>
+<% elsif @products.blank?%>
+<div class="search-error">
+  <h2><%= t('search-no-data')%></h2>
+</div>
+<% else %>
+<!--=== 搜索结果，有符合条件的数据 ===-->
+<!--=== 搜索內容 ===-->
+<div class='row'>
+  <table class='table table-hover'>
+    <!--=== 商品列表标题 ===-->
+    <thead>
+      <tr>
+        <th><%= t('nickname') %></th>
+        <th><%= t('f-category-group') %></th>
+        <th><%= t('f-product-category') %></th>
+        <th><%= t('created_at')%></th>
+        <th><%= t('f-procuct-status') %></th>
+        <th><%= t('f-options') %></th>
+      </tr>
+    </thead>
+
+    <!--=== 商品列表內容 ===-->
+    <% @products.each do |product| %>
+    <tr>
+      <td><%= link_to(product.user.name, admin_product_path(product)) %></td>
+      <td><%= product.category.category_group.name %></td>
+      <td><%= product.category.name %></td>
+      <td><%= product.created_at.strftime("%Y/%m/%d %I:%M %p") %></td>
+      <td>
+        <%= t(product.aasm_state, :scope => "product.aasm_state") %>
+      </td>
+      <!--=== 操作选项 ===-->
+      <td>
+        <div class="action-box">
+          <%= link_to(admin_product_path(product), class: "btn btn-md btn-default", :method => :delete, :data => { :confirm => "Are you sure?" }) do%>
+          <span class="fa fa-trash"></span>
+          <% end %>
+          <%= render "admin/products/state_option", product: product %>
+        </div>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+</div>
+
+<%= paginate @products %>
+<% end %>

@@ -400,3 +400,28 @@
     }
   }
 }
+
+/*===== 搜索栏 =====*/
+.search-box {
+  margin-top: 7.5px;
+
+  input {
+    height: 35px;
+  }
+
+  input:focus {
+    border: 2px solid #ccc;
+  }
+
+  button {
+    background-color: #ddd;
+    border: 1.5px solid #ddd;
+    padding: 5px 10px;
+    height: 35px;
+    color: #333;
+  }
+}
+
+.search-error {
+  margin: 150px 0 150px 0;
+}
