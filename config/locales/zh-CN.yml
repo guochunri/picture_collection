@@ -1,4 +1,8 @@
 zh-CN:
+  errors:
+    messages:
+      mini_magick_processing_error: "Failed to manipulate with MiniMagick, maybe it is not an image? Original Error: %{e}"
+
   product:
     aasm_state:
       waitting_for_approval: 等待审核

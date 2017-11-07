@@ -44,7 +44,6 @@ class ProductsController < ApplicationController
 
     if params[:product_images] != nil
       @product.product_images.destroy_all
-
       params[:product_images]['image'].each do |i|
         @product_image = @product.product_images.create(:image => i)
       end
