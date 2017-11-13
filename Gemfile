@@ -68,6 +68,9 @@ gem 'kaminari'
 # Search
 gem 'ransack'
 
+# zip
+gem 'rubyzip'
+
 # deployment
 gem "figaro"
 
