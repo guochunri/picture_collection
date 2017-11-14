@@ -1,9 +1,16 @@
 class ProductsController < ApplicationController
   before_action :find_product, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
+  require 'rubygems'
+  require 'zip'
 
   def index
     @products = Product.order("created_at DESC").page(params[:page]).per(12)
+    files =  @products.map{ |product| [product.product_images.first.image.url, product.product_images.first.image.url.split("/").last] }
+    @download_link = "uploads/products_#{Time.now.to_i}.zip"
+    Zip::File.open("public/#{@download_link}", Zip::File::CREATE) do |zipfile|
+      @products.map{ |product| zipfile.add(product.product_images.first.image.url.split("/").last, product.product_images.first.image.path)}
+    end
   end
 
   def show
@@ -44,7 +51,6 @@ class ProductsController < ApplicationController
 
     if params[:product_images] != nil
       @product.product_images.destroy_all
-
       params[:product_images]['image'].each do |i|
         @product_image = @product.product_images.create(:image => i)
       end
