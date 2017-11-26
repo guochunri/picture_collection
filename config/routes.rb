@@ -25,6 +25,7 @@ Rails.application.routes.draw do
         get :search
       end
       member do
+        get :download
         post :approve
         post :unapprove
       end
