@@ -2,7 +2,7 @@ class Admin::ProductsController < ApplicationController
   before_action :authenticate_user!
   before_action :admin_required
   before_action :validate_search_key, only: [:search]
-  before_action :find_product, only: [:show, :update, :destroy, :approve, :unapprove, :download]
+  before_action :find_product, only: [:show, :update, :destroy, :approve, :unapprove]
   layout "admin"
   require 'rubygems'
   require 'zip'
@@ -30,15 +30,51 @@ class Admin::ProductsController < ApplicationController
     redirect_to :back
   end
 
-  def download
-    files =  @product.tap{ |product| [product.product_images.first.image.url, product.product_images.first.image.url.split("/").last] }
-    @download_link = "uploads/#{@product.name}_#{Time.now.to_i}.zip"
-    Zip::File.open("public/#{@download_link}", Zip::File::CREATE) do |zipfile|
+  def add_to_zip_file(zip_file_name,file_path)
+    def self.add_file(start_path,file_path,zip)
+      if File.directory?(file_path)
+        zip.mkdir(file_path)
+        Dir.foreach(file_path) do |filename|
+          add_file("#{start_path}/#{filename}","#{file_path}/#{filename}",zip) unless filename=="." or filename==".."
+        end
+      else
+        zip.add(start_path,file_path)
 
-      zipfile.add(@product.product_images.first.image.url.split("/").last, @product.product_images.first.image.path)
+      end
     end
+    if File.exist?(zip_file_name)
+      #      puts "文件已存在，将会删除此文件并重新建立。"
+      File.delete(zip_file_name)
+    end
+    # 取得要压缩的目录父路径，以及要压缩的目录名
+    chdir,tardir = File.split(file_path)
+    # 切换到要压缩的目录
+    Dir.chdir(chdir) do
+      # 创建压缩文件
+      #      puts "开始创建压缩文件"
+      Zip::File.open(zip_file_name,Zip::File::CREATE) do |zipfile|
+        #        puts "文件创建成功，开始添加文件..."
+        # 调用add_file方法，添加文件到压缩文件
+        #        puts "已添加文件列表如下:"
+        add_file(tardir,tardir,zipfile)
+      end
+    end
+  end
 
-    send_file Rails.root.join('public', "#{@download_link}")
+  def download
+    picture = []
+    @product = Product.find(params[:id])
+    FileUtils.mkdir_p("#{Rails.root}/public/uploads/temp_dir/#{@product.name}")
+    @product.product_images.each do |i|
+      picture << i.image.path
+    end
+    FileUtils.cp(picture, "#{Rails.root}/public/uploads/temp_dir/#{@product.name}")
+
+    if (File.exist?("#{Rails.root}/public/uploads/temp_dir/#{@product.name}.zip"))
+      File.delete("#{Rails.root}/public/uploads/temp_dir/#{@product.name}.zip")
+    end
+    add_to_zip_file("#{Rails.root}/public/uploads/temp_dir/#{@product.name}.zip","#{Rails.root}/public/uploads/temp_dir/#{@product.name}")
+    send_file "#{Rails.root}/public/uploads/temp_dir/#{@product.name}.zip"
   end
 
   def search
