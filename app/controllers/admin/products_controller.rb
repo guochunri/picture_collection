@@ -64,17 +64,21 @@ class Admin::ProductsController < ApplicationController
   def download
     picture = []
     @product = Product.find(params[:id])
-    FileUtils.mkdir_p("#{Rails.root}/public/uploads/temp_dir/#{@product.name}")
+    FileUtils.mkdir_p("#{Rails.root}/public/temp_dir/#{@product.name}")
     @product.product_images.each do |i|
       picture << i.image.path
     end
-    FileUtils.cp(picture, "#{Rails.root}/public/uploads/temp_dir/#{@product.name}")
+    FileUtils.cp(picture, "#{Rails.root}/public/temp_dir/#{@product.name}")
 
-    if (File.exist?("#{Rails.root}/public/uploads/temp_dir/#{@product.name}.zip"))
-      File.delete("#{Rails.root}/public/uploads/temp_dir/#{@product.name}.zip")
+    add_to_zip_file("#{Rails.root}/public/temp_dir/#{@product.name}.zip","#{Rails.root}/public/temp_dir/#{@product.name}")
+
+    File.open("#{Rails.root}/public/temp_dir/#{@product.name}.zip", 'r') do |f|
+      send_data f.read, type: 'application/zip', :disposition => 'attachment'
     end
-    add_to_zip_file("#{Rails.root}/public/uploads/temp_dir/#{@product.name}.zip","#{Rails.root}/public/uploads/temp_dir/#{@product.name}")
-    send_file "#{Rails.root}/public/uploads/temp_dir/#{@product.name}.zip"
+    File.delete("#{Rails.root}/public/temp_dir/#{@product.name}.zip")
+
+  ensure
+    FileUtils.rm_rf ("#{Rails.root}/public/temp_dir/#{@product.name}")
   end
 
   def search
