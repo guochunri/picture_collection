@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'https://gems.ruby-china.org'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
@@ -74,10 +74,13 @@ gem 'rubyzip'
 # deployment
 gem "figaro"
 
+gem 'pg'
+
 group :development, :test do
+  gem 'capistrano-rails'
+  gem 'capistrano-passenger'
   gem 'pry'
   gem 'awesome_rails_console'
-  gem 'sqlite3'
 end
 
 group :development do
@@ -96,4 +99,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 group :production do
   gem 'pg'
-end 
+end
