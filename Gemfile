@@ -49,7 +49,6 @@ gem 'ransack'
 # Upload picture
 gem 'carrierwave'
 gem 'mini_magick'
-gem 'fog-aws'
 
 # Language
 gem 'i18n'
