@@ -4,7 +4,7 @@
       <h3 class="panel-title"><%= @product.user.name %></h3>
     </div>
     <div class="panel-body">
-      <p><%= t('f-product-name')%>：<%= @product.name %></p>
+      <p><%= t('f-product-name')%>：<%= @product.name.upcase %></p>
       <p><%= t('f-product-description')%>：<%= @product.description %></p>
       <p><%= t('f-product-category_group')%>：<%= @product.category.category_group.name %>
         -
