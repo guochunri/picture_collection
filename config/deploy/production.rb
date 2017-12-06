@@ -32,12 +32,6 @@ server "116.62.58.166", user: "deploy", roles: %w{app db web}, my_property: :my_
 # http://capistranorb.com/documentation/getting-started/configuration/
 # Feel free to add new variables to customise your setup.
 
-# Do not fallback to assets pipeline if a precompiled asset is missed.
-config.assets.compile = true
-
-config.assets.digest = true
-config.assets.initialize_on_precompile = false
-
 
 # Custom SSH Options
 # ==================
