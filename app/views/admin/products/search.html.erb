@@ -21,6 +21,7 @@
         <th><%= t('created_at')%></th>
         <th><%= t('f-procuct-status') %></th>
         <th><%= t('f-options') %></th>
+        <th></th>
       </tr>
     </thead>
 
@@ -43,6 +44,7 @@
           <%= render "admin/products/state_option", product: product %>
         </div>
       </td>
+      <td><%= button_to "下载图片", download_admin_product_path(product), class: "btn btn-success", method: :get %></td>
     </tr>
     <% end %>
   </table>
