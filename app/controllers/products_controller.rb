@@ -1,11 +1,11 @@
 class ProductsController < ApplicationController
   before_action :find_product, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!
   require 'rubygems'
   require 'zip'
 
   def index
-    @products = Product.order("created_at DESC").page(params[:page]).per(12)
+    @products = Product.where(:user_id => current_user.id).order("created_at DESC").page(params[:page]).per(12)
   end
 
   def show
