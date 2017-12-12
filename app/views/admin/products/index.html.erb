@@ -11,7 +11,6 @@
       <th><%= t('created_at')%></th>
       <th><%= t('f-procuct-status') %></th>
       <th><%= t('f-options') %></th>
-      <th></th>
     </tr>
   </thead>
 
@@ -27,12 +26,14 @@
     <td>
       <div class="action-box">
         <%= link_to(admin_product_path(product), class: "btn btn-md btn-default", :method => :delete, :data => { :confirm => "Are you sure?" }) do%>
-        <span class="fa fa-trash"></span>
+          <span class="fa fa-trash"></span>
+        <% end %>
+        <%= link_to(download_admin_product_path(product), class: "btn btn-md btn-default", method: :get) do %>
+          <span class="fa fa-cloud-download"></span>
         <% end %>
         <%= render "admin/products/state_option", product: product %>
       </div>
     </td>
-    <td><%= button_to "下载图片", download_admin_product_path(product), class: "btn btn-success", method: :get %></td>
   </tr>
   <% end %>
 </table>

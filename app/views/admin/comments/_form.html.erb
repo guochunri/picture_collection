@@ -1,0 +1,4 @@
+<%= simple_form_for([:admin, @product, @product.comments.build]) do |f| %>
+  <%= f.input :comment, :label => "( ^_^ )" %>
+  <%= f.submit t('f-reply'), data: { disable_with: "Submitting..." }, class: "btn btn-primary" %>
+<% end %>

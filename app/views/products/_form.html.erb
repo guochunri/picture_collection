@@ -1,4 +1,4 @@
-<div class="col-md-8 col-md-offset-2">
+<div class="col-md-12">
   <div class="row">
     <%= simple_form_for @product do |f| %>
     <div class="panel panel-default">
@@ -15,7 +15,7 @@
           <% end %>
         </div>
         <% end %>
-
+        <br>
         <!-- 上传图片 -->
         <%= f.file_field :product_image, :multiple => true, name: 'product_images[image][]', :class => "form-control" %>
         <%= f.input :name, :label => t('f-product-name'), :placeholder => "车牌格式参照：粤A-JH666", input_html: { class: 'width-50' } %>

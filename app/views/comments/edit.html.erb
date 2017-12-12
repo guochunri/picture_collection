@@ -1,0 +1,6 @@
+<h1><%= t('edit_reply') %></h1>
+
+<%= simple_form_for([@product, @comment]) do |f| %>
+  <%= f.input :comment %>
+  <%= f.submit %>
+<% end %>
