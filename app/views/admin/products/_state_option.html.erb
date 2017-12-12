@@ -2,11 +2,19 @@
 
   <% case product.aasm_state %>
   <% when "waitting_for_approval" %>
-    <%= link_to("审核通过",
+    <%= link_to("初审通过",
                 approve_admin_product_path(product),
                 class: "btn btn-default btn-sm", method: :post) %>
-    <%= link_to("不合格",
+    <%= link_to("初审不合格",
                 unapprove_admin_product_path(product),
+                class: "btn btn-default btn-sm", method: :post) %>
+
+    <% when "approved" %>
+        <%= link_to("终审通过",
+                    last_approved_admin_product_path(product),
+                    class: "btn btn-default btn-sm", method: :post) %>
+    <%= link_to("终审不合格",
+                last_unapprove_admin_product_path(product),
                 class: "btn btn-default btn-sm", method: :post) %>
 
   <% when "waitting_for_approval" %>
