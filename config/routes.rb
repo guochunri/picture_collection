@@ -28,6 +28,8 @@ Rails.application.routes.draw do
         get :download
         post :approve
         post :unapprove
+        post :last_approved
+        post :last_unapprove
       end
     end
 

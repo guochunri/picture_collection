@@ -6,8 +6,10 @@ zh-CN:
   product:
     aasm_state:
       waitting_for_approval: 等待审核
-      approved: 审核通过
-      rejected: 不合格
+      approved: 初审通过
+      rejected: 初审不合格
+      final_approved: 终审通过
+      final_rejected: 终审不合格
 
   # 共用元素 #
   f-hide: 隐藏

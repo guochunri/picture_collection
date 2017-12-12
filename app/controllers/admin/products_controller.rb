@@ -2,7 +2,7 @@ class Admin::ProductsController < ApplicationController
   before_action :authenticate_user!
   before_action :admin_required
   before_action :validate_search_key, only: [:search]
-  before_action :find_product, only: [:show, :update, :destroy, :approve, :unapprove]
+  before_action :find_product, only: [:show, :update, :destroy, :approve, :unapprove, :last_approved, :last_unapprove]
   layout "admin"
   require 'rubygems'
   require 'zip'
@@ -27,6 +27,16 @@ class Admin::ProductsController < ApplicationController
 
   def unapprove
     @product.disagree!
+    redirect_to :back
+  end
+
+  def last_approved
+    @product.final_agree!
+    redirect_to :back
+  end
+
+  def last_unapprove
+    @product.final_disagree!
     redirect_to :back
   end
 
