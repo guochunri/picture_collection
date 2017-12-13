@@ -1,0 +1,6 @@
+<h1><%= t('edit_reply') %></h1>
+
+<%= simple_form_for([:admin, @product, @comment]) do |f| %>
+  <%= f.input :comment, :label => "..." %>
+  <%= f.submit t('f-reply'), data: { disable_with: "Submitting..." }, class: "btn btn-primary" %>
+<% end %>

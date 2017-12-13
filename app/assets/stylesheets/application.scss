@@ -22,6 +22,15 @@
 @import "select2-bootstrap";
 
 
+
+body {
+    font-family: Verdana,"Helvetica Neue",Helvetica, "Nimbus Sans L", Arial, "Liberation Sans", "PingFang SC", "Hiragino Sans GB", "Source Han Sans CN", "Source Han Sans SC", "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei", "ST Heiti", SimHei, "WenQuanYi Zen Hei Sharp", sans-serif;
+    background-color: #f9f9fa;
+    color: #333;
+    font-size: 14px;
+    letter-spacing: 0.1em;
+}
+
 /*===== Users 用戶中心 =====*/
 .user_setup {
   height: 750px;
@@ -184,7 +193,7 @@
 
     .data {
       padding: 0.75rem 5%;
-      color: #969696;
+      // color: #969696;
 
       .buttons,
       .username {
@@ -302,14 +311,15 @@
   }
   /*===== 按钮设置 =====*/
   .btn-default {
+    font-weight: 100;
     padding: 5px 10px;
     background-color: #fff;
     border: 1.5px solid #ccc;
   }
 
   .btn-info {
-    padding: 10px 15px;
-    border: 1.5px solid #ccc;
+    font-weight: 100;
+    padding: 5px 10px;
     color: #fff;
   }
 
@@ -318,6 +328,16 @@
   }
 
   .btn-info:hover {
+    color: #fff;
+  }
+
+  .btn-danger {
+    font-weight: 100;
+    padding: 5px 10px;
+    color: #fff;
+  }
+
+  .btn-danger:hover {
     color: #fff;
   }
   /*===== 产品顏色设置 =====*/
@@ -425,3 +445,73 @@
 .search-error {
   margin: 150px 0 150px 0;
 }
+
+
+/*===== Comments =====*/
+.button {
+  color: #397CAC;
+  border: 1px solid #397CAC;
+  padding: .5em 1em;
+  border-radius: 0.2em;
+  text-decoration: none;
+  margin-right: 2%;
+}
+ #comments {
+   .comment {
+     border-bottom: 1px solid #d1d1d1;
+     padding-bottom: 1em;
+     margin-bottom: 1em;
+     .content {
+       width: 75%;
+       float: left;
+       .signature {
+         color: #969696
+       }
+     }
+     .buttons {
+       width: 25%;
+       float: left;
+       font-size: .8em;
+       text-align: right;
+       padding-top: 1.5em;
+       a {
+         color: #397CAC;
+         border: 1px solid #397CAC;
+         padding: .5em 1em;
+         border-radius: 0.2em;
+         text-decoration: none;
+         margin-right: 2%;
+       }
+     }
+     .comment_content {
+       margin: 0;
+       padding: 0;
+     }
+     .comment_author {
+       color: #397CAC;
+       margin-top: .5rem;
+       font-size: 0.6em;
+       font-weight: 700;
+     }
+   }
+
+   textarea {
+     width: 100%;
+     min-height: 200px;
+     border: 1px solid #d1d1d1;
+     border-radius: .2em;
+     margin: 1em, 0;
+   }
+ }
+
+ .common-block {
+     display: block;
+     max-width: 960px;
+     margin: 20px auto;
+     padding-top: 20px;
+     padding-bottom: 20px;
+     background-color: #fff;
+     box-shadow: 1px 2px 4px 0 rgba(0,0,0,0.25);
+     letter-spacing: 0;
+     border-radius: 10px;
+ }

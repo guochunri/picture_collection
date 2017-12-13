@@ -31,10 +31,13 @@ Rails.application.routes.draw do
         post :last_approved
         post :last_unapprove
       end
+      resources :comments
     end
 
   end
 
-  resources :products
+  resources :products do
+    resources :comments
+  end
 
 end
