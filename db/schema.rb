@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171212063057) do
+ActiveRecord::Schema.define(version: 20171214061903) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -53,7 +53,9 @@ ActiveRecord::Schema.define(version: 20171212063057) do
     t.integer  "user_id"
     t.integer  "category_group_id"
     t.string   "aasm_state",        default: "waitting_for_approval"
+    t.string   "friendly_id"
     t.index ["aasm_state"], name: "index_products_on_aasm_state"
+    t.index ["friendly_id"], name: "index_products_on_friendly_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|

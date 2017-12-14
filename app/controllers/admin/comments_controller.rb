@@ -39,7 +39,7 @@ class Admin::CommentsController < ApplicationController
   private
 
   def find_product
-    @product = Product.find(params[:product_id])
+    @product = Product.find_by_friendly_id!(params[:product_id])
   end
 
 end
