@@ -73,7 +73,7 @@ class Admin::ProductsController < ApplicationController
 
   def download
     picture = []
-    @product = Product.find(params[:id])
+    @product = Product.find_by_friendly_id!(params[:id])
     FileUtils.mkdir_p("#{Rails.root}/public/uploads/temp_dir/#{@product.name.upcase}")
     @product.product_images.each do |i|
       picture << i.image.path
@@ -97,7 +97,7 @@ class Admin::ProductsController < ApplicationController
   private
 
   def find_product
-    @product = Product.find(params[:id])
+    @product = Product.find_by_friendly_id!(params[:id])
   end
 
   protected
