@@ -3,6 +3,20 @@ zh-CN:
     messages:
       mini_magick_processing_error: "Failed to manipulate with MiniMagick, maybe it is not an image? Original Error: %{e}"
 
+  # user管理 #
+  user:
+    role:
+      admin: 超级管理员
+      CustomerManager: 集客
+      ordinary: 普通用户
+
+  f-CustomerManager: 集客账号
+  f-email: 账号
+  f-authority: 权限
+  btn-user-new: 新增用户
+  user-edit: 编辑用户
+  user-new: 新增用户
+
   product:
     aasm_state:
       waitting_for_approval: 等待审核
@@ -12,6 +26,7 @@ zh-CN:
       final_rejected: 终审不合格
 
   # 共用元素 #
+  warning-not-admin: 您的权限不足
   f-hide: 隐藏
   f-submit: 确认送出
   f-reply: 提交回复
@@ -42,7 +57,7 @@ zh-CN:
   f-product-name: 车牌
   f-product-description: 项目介绍
   f-product-category: 项目分类
-  f-product-category_group: 项目类型
+  f-product-category_group: 集客
   f-procuct-status: 状态
 
   btn-product-new: 新增产品
@@ -53,7 +68,8 @@ zh-CN:
 
   # 后台操作面板 #
   admin-product: 产品管理
-  admin-category: 分类管理
+  admin-category: 集客分类管理
+  admin-user: 用户管理
 
   # 搜索栏
   keywaods: 请输入昵称/车牌
@@ -64,15 +80,15 @@ zh-CN:
   nickname: 昵称
   created_at: 创建时间
 
-  # 类型管理 #
-  category-group-index: 类型一览
-  category-group-new: 新增类型
-  category-group-edit: 编辑类型
+  # 集客管理 #
+  category-group-index: 集客一览
+  category-group-new: 新增集客
+  category-group-edit: 编辑集客
 
-  f-category-group-name: 类型名称
-  f-category-group-categories: 类型分类一览
+  f-category-group-name: 集客名称
+  f-category-group-categories: 集客分类一览
 
-  btn-category-group-new: 新增类型
+  btn-category-group-new: 新增集客
 
   # 分类管理 #
   category-index: 分类一览
@@ -80,8 +96,8 @@ zh-CN:
   category-edit: 编辑分类
 
   f-category-name: 分类名称
-  f-category-group: 类型
-  f-category-groups: 项目类型
+  f-category-group: 集客
+  f-category-groups: 集客
   f-category-products: 分类项目一览
 
   btn-category-new: 新增分类

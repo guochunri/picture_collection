@@ -2,6 +2,8 @@
   <hr style="size:2px" />
   <%= simple_form_for [:admin, @category_group] do |f| %>
     <%= f.input :name, :label => t('f-category-group-name') %>
+    <%= f.label :user_id, t('f-CustomerManager') %>
+    <%= f.select :user_id, User.where("role == 'CustomerManager' ").map{ |a| [a.name, a.id] }, {}, :class => "form-control" %>
     <span class="hidden-box"><%= f.input :is_hidden, :label => t('f-hide') %></span>
     <div class="form-actions">
       <%= f.submit t('f-submit'), class: 'btn btn-md btn-default' %>

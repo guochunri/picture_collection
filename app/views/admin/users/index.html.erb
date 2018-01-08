@@ -1,0 +1,32 @@
+<div class="pull-right">
+  <%= link_to(t('btn-user-new'), new_admin_user_path, :class => 'btn btn-md btn-info')%>
+</div>
+<table class='table table-hover'>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th><%= t('nickname') %></th>
+      <th><%= t('f-email') %></th>
+      <th><%= t('f-authority') %></th>
+      <th><%= t('f-options') %></th>
+    </tr>
+  </thead>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.id %></td>
+      <td><%= user.name %></td>
+      <td><%= user.email %></td>
+      <td><%= t(user.role, :scope => "user.role") %></td>
+      <td >
+        <%= link_to(edit_admin_user_path(user), class: "btn btn-md btn-default") do %>
+          <span class="fa fa-pencil"></span>
+        <% end %>
+        <%= link_to(admin_user_path(user), class: "btn btn-md btn-default", :method => :delete, :data => { :confirm => "Are you sure?" }) do%>
+          <span class="fa fa-trash"></span>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<%= paginate @users %>

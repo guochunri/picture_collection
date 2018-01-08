@@ -1,6 +1,6 @@
 class Admin::CategoryGroupsController < ApplicationController
   before_action :authenticate_user!
-  before_action :admin_required
+  before_action :require_admin!
   layout "admin"
 
   def show
@@ -52,7 +52,7 @@ class Admin::CategoryGroupsController < ApplicationController
   private
 
   def category_group_params
-    params.require(:category_group).permit(:name, :is_hidden, :description)
+    params.require(:category_group).permit(:name, :is_hidden, :description, :user_id)
   end
 
 end

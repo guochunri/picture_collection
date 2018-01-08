@@ -10,8 +10,15 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: [:name])
   end
 
-  def admin_required
-    if !current_user.admin?
+  def require_CustomerManager!
+    unless current_user.is_CustomerManager?
+      flash[:alert] = t('warning-not-admin')
+      redirect_to root_path
+    end
+  end
+
+  def require_admin!
+    unless current_user.is_admin?
       redirect_to "/", alert: t('warning-not-admin')
     end
   end

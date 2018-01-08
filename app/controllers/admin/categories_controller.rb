@@ -1,6 +1,6 @@
 class Admin::CategoriesController < ApplicationController
   before_action :authenticate_user!
-  before_action :admin_required
+  before_action :require_admin!
   layout "admin"
 
   def index

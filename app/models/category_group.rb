@@ -2,6 +2,7 @@ class CategoryGroup < ApplicationRecord
   validates :name, presence: true
   has_many :categories
   has_many :products
+  belongs_to :user
 
   scope :published, -> { where(is_hidden: false) }
 
