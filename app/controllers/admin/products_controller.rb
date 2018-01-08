@@ -1,6 +1,6 @@
 class Admin::ProductsController < ApplicationController
   before_action :authenticate_user!
-  before_action :admin_required
+  before_action :require_CustomerManager!
   before_action :validate_search_key, only: [:search]
   before_action :find_product, only: [:show, :update, :destroy, :approve, :unapprove, :last_approved, :last_unapprove]
   layout "admin"
@@ -8,7 +8,14 @@ class Admin::ProductsController < ApplicationController
   require 'zip'
 
   def index
-    @products = Product.order("created_at DESC").page(params[:page]).per(10)
+    if current_user.is_admin?
+      @products = Product.recent.page(params[:page]).per(10)
+    else
+      @products = Product.find_by_sql("SELECT p.* FROM products p, category_groups c, users u
+                                      WHERE p.category_group_id = c.id AND c.user_id = u.id AND u.id = #{current_user.id}
+                                      ORDER BY created_at DESC ")
+      @products = Kaminari.paginate_array(@products).page(params[:page]).per(10)
+    end
   end
 
   def show

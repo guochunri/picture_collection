@@ -24,7 +24,7 @@
           </a>
           <ul class="dropdown-menu">
             <!-- admin 后台 -->
-            <% if current_user.admin? %>
+            <% if current_user.is_CustomerManager? %>
             <li>
               <%= link_to("管理员后台", admin_products_path) %>
             </li>

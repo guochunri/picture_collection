@@ -10,6 +10,8 @@ class Product < ApplicationRecord
   accepts_nested_attributes_for :product_images
   before_validation :generate_friendly_id, :on => :create
 
+  scope :recent, -> { order("created_at DESC") }
+
   def to_param
     self.friendly_id
   end

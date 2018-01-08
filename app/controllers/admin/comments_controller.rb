@@ -1,6 +1,6 @@
 class Admin::CommentsController < ApplicationController
   before_action :authenticate_user!
-  before_action :admin_required
+  before_action :require_admin!
   before_action :find_product, only: [:create, :edit, :update, :destroy]
   layout "admin"
 
