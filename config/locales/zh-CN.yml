@@ -57,7 +57,7 @@ zh-CN:
   f-product-name: 车牌
   f-product-description: 项目介绍
   f-product-category: 项目分类
-  f-product-category_group: 集客
+  f-product-category_group: 项目名称
   f-procuct-status: 状态
 
   btn-product-new: 新增产品
@@ -68,7 +68,7 @@ zh-CN:
 
   # 后台操作面板 #
   admin-product: 产品管理
-  admin-category: 集客分类管理
+  admin-category: 项目分类管理
   admin-user: 用户管理
 
   # 搜索栏
@@ -80,15 +80,15 @@ zh-CN:
   nickname: 昵称
   created_at: 创建时间
 
-  # 集客管理 #
-  category-group-index: 集客一览
-  category-group-new: 新增集客
-  category-group-edit: 编辑集客
+  # 项目管理 #
+  category-group-index: 项目一览
+  category-group-new: 新增项目
+  category-group-edit: 编辑项目
 
-  f-category-group-name: 集客名称
-  f-category-group-categories: 集客分类一览
+  f-category-group-name: 项目名称
+  f-category-group-categories: 项目分类一览
 
-  btn-category-group-new: 新增集客
+  btn-category-group-new: 新增项目
 
   # 分类管理 #
   category-index: 分类一览
@@ -96,8 +96,8 @@ zh-CN:
   category-edit: 编辑分类
 
   f-category-name: 分类名称
-  f-category-group: 集客
-  f-category-groups: 集客
+  f-category-group: 项目
+  f-category-groups: 项目
   f-category-products: 分类项目一览
 
   btn-category-new: 新增分类
