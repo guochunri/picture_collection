@@ -4,7 +4,7 @@
 <table class='table table-hover'>
   <thead>
     <tr>
-      <th>ID</th>
+      <!-- <th>ID</th> -->
       <th><%= t('nickname') %></th>
       <th><%= t('f-email') %></th>
       <th><%= t('f-authority') %></th>
@@ -13,7 +13,7 @@
   </thead>
   <% @users.each do |user| %>
     <tr>
-      <td><%= user.id %></td>
+      <!-- <td><%= user.id %></td> -->
       <td><%= user.name %></td>
       <td><%= user.email %></td>
       <td><%= t(user.role, :scope => "user.role") %></td>
