@@ -19,6 +19,7 @@
   <thead>
     <tr>
       <th><%= t('nickname') %></th>
+      <th><%= t('f-product-name')%></th>
       <th><%= t('f-category-group') %></th>
       <th><%= t('f-product-category') %></th>
       <th><%= t('created_at')%></th>
@@ -31,6 +32,7 @@
   <% @products.each do |product| %>
   <tr>
     <td><%= link_to(product.user.name, admin_product_path(product)) %></td>
+    <td><%= product.name.upcase %></td>
     <td><%= product.category.category_group.name %></td>
     <td><%= product.category.name %></td>
     <td><%= product.created_at.strftime("%Y/%m/%d %I:%M %p") %></td>
@@ -38,8 +40,10 @@
     <!--=== 操作选项 ===-->
     <td>
       <div class="action-box">
-        <%= link_to(admin_product_path(product), class: "btn btn-md btn-default", :method => :delete, :data => { :confirm => "Are you sure?" }) do%>
-          <span class="fa fa-trash"></span>
+        <% if current_user.is_admin? %>
+          <%= link_to(admin_product_path(product), class: "btn btn-md btn-default", :method => :delete, :data => { :confirm => "Are you sure?" }) do%>
+            <span class="fa fa-trash"></span>
+          <% end %>
         <% end %>
         <%= link_to(download_admin_product_path(product), class: "btn btn-md btn-default", method: :get) do %>
           <span class="fa fa-cloud-download"></span>
