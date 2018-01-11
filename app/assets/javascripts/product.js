@@ -1,4 +1,4 @@
-$(document).on("turbolinks:load", function() {
+$(document).ready(function() {
   var categories;
   $('#product_category_id').parent().show();
   categories = $('#product_category_id').html();
