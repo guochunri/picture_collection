@@ -78,7 +78,7 @@ gem 'rubyzip'
 gem "figaro"
 
 # database
-gem 'pg'
+gem 'pg', '~> 1.0.0'
 
 group :development, :test do
   gem 'capistrano-rails'

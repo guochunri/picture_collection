@@ -282,7 +282,7 @@ DEPENDENCIES
   kaminari
   listen (~> 3.0.5)
   mini_magick
-  pg
+  pg (~> 1.0.0)
   pry
   puma (~> 3.0)
   rails (~> 5.0.5)
