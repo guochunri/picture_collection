@@ -12,8 +12,15 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//= require fancybox
 //= require bootstrap
 //= require select2
 //= require select2_locale_zh-CN
 //= require_tree .
+
+$(document).ready(function() {
+	$(".fancybox").fancybox({
+		openEffect	: 'none',
+		closeEffect	: 'none'
+	});
+});
