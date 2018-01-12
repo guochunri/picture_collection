@@ -11,10 +11,7 @@ class Admin::ProductsController < ApplicationController
     if current_user.is_admin?
       @products = Product.recent.page(params[:page]).per(10)
     else
-      @products = Product.find_by_sql("SELECT p.* FROM products p, category_groups c, users u
-                                      WHERE p.category_group_id = c.id AND c.user_id = u.id AND u.id = #{current_user.id}
-                                      ORDER BY created_at DESC ")
-      @products = Kaminari.paginate_array(@products).page(params[:page]).per(10)
+      @products = Product.joins(:user, :category_group).where("category_groups.user_id" => "#{current_user.id}" ).recent.page(params[:page]).per(10)
     end
   end
 
@@ -95,10 +92,17 @@ class Admin::ProductsController < ApplicationController
   end
 
   def search
-    if @query_string.present?
-       search_result = Product.joins(:user).ransack(@search_criteria).result(:distinct => true)
-       @products = search_result.page(params[:page]).per(10)
-     end
+    if current_user.is_admin?
+      if @query_string.present?
+        search_result = Product.joins(:user).ransack(@search_criteria).result(:distinct => true)
+        @products = search_result.page(params[:page]).per(10)
+      end
+    else
+      if @query_string.present?
+        search_result = Product.joins(:user, :category_group).where("category_groups.user_id" => "#{current_user.id}" ).ransack(@search_criteria).result(:distinct => true)
+        @products = search_result.page(params[:page]).per(10)
+      end
+    end
   end
 
   private
