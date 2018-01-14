@@ -9,9 +9,11 @@ class Admin::ProductsController < ApplicationController
 
   def index
     if current_user.is_admin?
-      @products = Product.recent.page(params[:page]).per(10)
-    else
+      @products = Product.includes(:user, :category_group, :category).recent.page(params[:page]).per(10)
+    elsif current_user.is_manager?
       @products = Product.joins(:user, :category_group).where("category_groups.user_id" => "#{current_user.id}" ).recent.page(params[:page]).per(10)
+    else
+      @products = Product.joins(:user, :category).where("categories.user_id" => "#{current_user.id}" ).recent.page(params[:page]).per(10)
     end
   end
 
@@ -97,9 +99,14 @@ class Admin::ProductsController < ApplicationController
         search_result = Product.joins(:user).ransack(@search_criteria).result(:distinct => true)
         @products = search_result.page(params[:page]).per(10)
       end
-    else
+    elsif current_user.is_manager?
       if @query_string.present?
         search_result = Product.joins(:user, :category_group).where("category_groups.user_id" => "#{current_user.id}" ).ransack(@search_criteria).result(:distinct => true)
+        @products = search_result.page(params[:page]).per(10)
+      end
+    else
+      if @query_string.present?
+        search_result = Product.joins(:user, :category).where("categories.user_id" => "#{current_user.id}" ).ransack(@search_criteria).result(:distinct => true)
         @products = search_result.page(params[:page]).per(10)
       end
     end

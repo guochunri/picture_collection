@@ -4,6 +4,7 @@ class Category < ApplicationRecord
 
   belongs_to :category_group
   has_many :products
+  belongs_to :user
 
   scope :published, -> { where(is_hidden: false) }
 
@@ -16,5 +17,5 @@ class Category < ApplicationRecord
     self.is_hidden = true
     self.save
   end
-  
+
 end

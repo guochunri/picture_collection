@@ -48,7 +48,7 @@
           <%= f.collection_select :category_group_id, CategoryGroup.published.order(:name), :id, :name, include_blank: true %>
         </div>
         <div class="field">
-          <%= f.label :category_id, t('f-product-category') %><br />
+          <%= f.label :category_id, t('f-product_category') %><br />
           <%= f.grouped_collection_select :category_id, CategoryGroup.published.order(:name), :categories, :name, :id, :name, include_blank: true %>
         </div>
 

@@ -1,9 +1,11 @@
 <div class="col-md-8 col-md-offset-2 admin-data-box">
   <hr style="size:2px"/>
   <%= simple_form_for [:admin, @category] do |f| %>
-  <%= f.label t('f-product-category_group') %>
+  <%= f.label t('f-product-category-group') %>
   <%= f.select :category_group_id, CategoryGroup.all.map{ |a| [a.name, a.id] }, {}, :class => "form-control" %>
   <%= f.input :name, :label => t('f-category-name') %>
+  <%= f.label t('f-CustomerOperator') %>
+  <%= f.select :user_id, User.where(:role => 'CustomerOperator' ).map{ |a| [a.email, a.id] }, {}, :class => "form-control" %>
   <!-- <span class="hidden-box"><%= f.input :is_hidden, :label => t('f-hide') %></span> -->
   <div class="form-actions">
     <%= f.submit t('f-submit'), class: 'btn btn-md btn-default' %>
@@ -13,4 +15,5 @@
 
 <script>
   $("#category_category_group_id").select2({theme: "bootstrap", language: "zh-CN"});
+  $("#category_user_id").select2({theme: "bootstrap", language: "zh-CN"});
 </script>
