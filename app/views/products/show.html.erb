@@ -12,7 +12,7 @@
             -
             <%= @product.category.name %></p>
           <p><%= t('f-procuct-status')%>：<%= t(@product.aasm_state, :scope => "product.aasm_state") %></p>
-          <% if current_user && current_user == @product.user %>
+          <% if current_user && current_user == @product.user && @product.aasm_state == "rejected" || @product.aasm_state == "final_rejected" %>
             <%= link_to(t('btn-edit'), edit_product_path(@product), class: "btn btn-primary pull-right")%>
           <% end %>
         </div>
