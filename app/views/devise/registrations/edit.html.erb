@@ -4,24 +4,24 @@
       <div class="col-md-10 col-md-offset-1">
         <h2>
           <span class="fa fa-user-circle-o"></span>
-          用户信息修改
+          修改密码
         </h2>
 
         <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
         <%= f.error_notification %>
 
         <div class="form-inputs">
-          <%= f.input :name, :label => "昵称：", placeholder: "请输入网店名称", required: true, autofocus: true %>
-          <%= f.input :email, :label => "邮箱账户：", placeholder: "请输邮箱地址", required: true %>
+          <%= f.input :name, :label => "昵称：", placeholder: "请输入网店名称", required: true, autofocus: true, disabled: true %>
+          <%= f.input :email, :label => "邮箱账户：", placeholder: "请输邮箱地址", required: true, disabled: true %>
 
           <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
           <p>Currently waiting confirmation for:
             <%= resource.unconfirmed_email %></p>
           <% end %>
 
-          <%= f.input :password, :label => "密码：", placeholder: "请输入密码", autocomplete: "off", hint: "如果不修改密码，请保持此栏目为空", required: false %>
+          <%= f.input :password, :label => "新密码：", placeholder: "请输入新密码", autocomplete: "off", required: false %>
           <%= f.input :password_confirmation, :label => "确认密码：", placeholder: "再次确认密码", required: false %>
-          <%= f.input :current_password, :label => "当前密码：", hint: "请填写当前密码，确认修改", required: true %>
+          <%= f.input :current_password, :label => "原密码：", hint: "请填写原密码，确认修改", required: true %>
         </div>
 
         <div class="form-actions">
@@ -29,10 +29,10 @@
         </div>
         <% end %>
 
-        <h3>账户注销</h3>
+        <!-- <h3>账户注销</h3>
 
         <p>伐开心?
-          <%= link_to "注销", registration_path(resource_name), data: { confirm: "真的要舍我而去吗?" }, method: :delete %></p>
+          <%= link_to "注销", registration_path(resource_name), data: { confirm: "真的要舍我而去吗?" }, method: :delete %></p> -->
 
         <%= link_to "返回", :back %>
       </div>
