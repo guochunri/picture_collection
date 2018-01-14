@@ -4,8 +4,8 @@ class Admin::CategoriesController < ApplicationController
   layout "admin"
 
   def index
-    @categories = Category.all
-    @category_groups = CategoryGroup.all
+    @categories = Category.includes(:user).all
+    @category_groups = CategoryGroup.includes(:user).all
   end
 
   def show
@@ -64,7 +64,7 @@ class Admin::CategoriesController < ApplicationController
   private
 
   def category_params
-    params.require(:category).permit(:name, :category_group_id, :is_hidden)
+    params.require(:category).permit(:name, :category_group_id, :is_hidden, :user_id)
   end
 
 end

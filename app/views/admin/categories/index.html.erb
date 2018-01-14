@@ -62,6 +62,7 @@
         <tr>
           <th><%= t('f-category-group') %></th>
           <th><%= t('f-category-name') %></th>
+          <th><%= t('f-CustomerOperator') %></th>
           <th class="pull-right"><%= t('f-options') %></th>
         </tr>
       </thead>
@@ -70,7 +71,8 @@
       <% @categories.each do |category| %>
         <tr>
           <td><%= render_category_status(category) %> <%= category.category_group.name %></td>
-          <td><%= link_to(category.name, admin_category_path(category)) %></td>
+          <td><%= category.name %></td>
+          <td><%= category.user.name %>(<%= category.user.email %>) </td>
           <!--=== 操作选项 ===-->
           <td class="action-box pull-right">
             <%= link_to(edit_admin_category_path(category), class: "btn btn-md btn-default") do %>

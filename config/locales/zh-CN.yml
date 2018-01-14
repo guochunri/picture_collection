@@ -8,9 +8,11 @@ zh-CN:
     role:
       admin: 超级管理员
       CustomerManager: 集客
+      CustomerOperator: 供应商
       ordinary: 普通用户
 
   f-CustomerManager: 集客账号
+  f-CustomerOperator: 供应商账号
   f-email: 账号
   f-authority: 权限
   btn-user-new: 新增用户
@@ -48,15 +50,17 @@ zh-CN:
       next: 下一页
       last: 最后一页
 
-  # 项目管理 #
-  product-index: 项目一览
-  product-new: 新增项目
-  product-edit: 编辑项目
+  # 集客管理 #
+  product-index: 集客一览
+  product-new: 新增集客
+  product-edit: 编辑集客
 
-  f-product-images: 项目图片
+  f-product-images: 集客图片
   f-product-name: 车牌
-  f-product-description: 项目介绍
-  f-product-category: 项目分类
+  f-product-description: 集客介绍
+  f-product-category: 集客供应商
+  f-product_category: 分类
+  f-product-category-group: 集客名称
   f-product-category_group: 项目名称
   f-procuct-status: 状态
 
@@ -68,36 +72,36 @@ zh-CN:
 
   # 后台操作面板 #
   admin-product: 产品管理
-  admin-category: 项目分类管理
+  admin-category: 集客供应商管理
   admin-user: 用户管理
 
   # 搜索栏
   keywaods: 请输入昵称/车牌
   search-blank: 搜索内容不能为空，请输入些关键字试试呗
-  search-no-data: 没有符合搜索条件的项目哦！
+  search-no-data: 没有符合搜索条件的集客哦！
 
   # 产品管理
   nickname: 昵称
   created_at: 创建时间
 
-  # 项目管理 #
-  category-group-index: 项目一览
-  category-group-new: 新增项目
-  category-group-edit: 编辑项目
+  # 集客管理 #
+  category-group-index: 集客一览
+  category-group-new: 新增集客
+  category-group-edit: 编辑集客
 
-  f-category-group-name: 项目名称
-  f-category-group-categories: 项目分类一览
+  f-category-group-name: 集客名称
+  f-category-group-categories: 集客供应商一览
 
-  btn-category-group-new: 新增项目
+  btn-category-group-new: 新增集客
 
-  # 分类管理 #
-  category-index: 分类一览
-  category-new: 新增分类
-  category-edit: 编辑分类
+  # 供应商管理 #
+  category-index: 供应商一览
+  category-new: 新增供应商
+  category-edit: 编辑供应商
 
-  f-category-name: 分类名称
-  f-category-group: 项目
-  f-category-groups: 项目
-  f-category-products: 分类项目一览
+  f-category-name: 供应商名称
+  f-category-group: 集客
+  f-category-groups: 集客
+  f-category-products: 供应商集客一览
 
-  btn-category-new: 新增分类
+  btn-category-new: 新增供应商
