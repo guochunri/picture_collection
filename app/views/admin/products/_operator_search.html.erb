@@ -1,0 +1,10 @@
+<%= search_form_for @q, :url => admin_products_path(@product) do |s| %>
+  <div class="input-group search-box">
+    <p><%= s.search_field :name_or_user_name_cont, :placeholder => "昵称／车牌", :class => "form-control" %></p>
+    <div class="input-group-btn">
+      <button class="btn btn-default" type="submit">
+        <span><i class="fa fa-search"></i></span>
+      </button>
+    </div>
+  </div>
+<% end %>

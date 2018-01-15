@@ -52,7 +52,7 @@ zh-CN:
 
   # 集客管理 #
   product-index: 集客一览
-  product-new: 新增集客
+  product-new: 新增补漆照片
   product-edit: 编辑集客
 
   f-product-images: 集客图片
@@ -64,7 +64,7 @@ zh-CN:
   f-product-category_group: 项目名称
   f-procuct-status: 状态
 
-  btn-product-new: 新增产品
+  btn-product-new: 新增补漆照片
 
   # Comments #
   edit_reply: 编辑回帖
