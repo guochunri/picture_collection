@@ -43,9 +43,6 @@ gem 'bootstrap-sass'
 gem 'simple_form'
 gem 'font-awesome-rails'
 
-# Search
-gem 'ransack'
-
 # Upload picture
 gem 'carrierwave'
 gem 'mini_magick'

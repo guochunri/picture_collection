@@ -1,15 +1,11 @@
-<!--=== 标题 ===-->
-<!-- <h2><%= t('product-index') %></h2> -->
+<!--=== Search ===-->
 
-  <%= form_tag search_admin_products_path, :method => :get, class: "" do %>
-    <div class="input-group search-box">
-      <input type="text" class="form-control" name="keyword" placeholder="<%= t('keywaods')%>" value="<%= params[:keyword] %>">
-      <div class="input-group-btn">
-        <button class="btn btn-default" type="submit">
-          <span><i class="fa fa-search"></i></span>
-        </button>
-      </div>
-    </div>
+  <% if current_user.is_admin? %>
+    <%= render('admin_search') %>
+  <% elsif current_user.is_manager? %>
+    <%= render('manager_search') %>
+  <% else %>
+    <%= render('operator_search') %>
   <% end %>
   <br>
 

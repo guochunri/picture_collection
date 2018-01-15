@@ -9,11 +9,14 @@ class Admin::ProductsController < ApplicationController
 
   def index
     if current_user.is_admin?
-      @products = Product.includes(:user, :category_group, :category).recent.page(params[:page]).per(10)
+      @q = Product.ransack(params[:q])
+      @products = @q.result.includes(:user, :category_group, :category).recent.page(params[:page]).per(10)
     elsif current_user.is_manager?
-      @products = Product.joins(:user, :category_group).where("category_groups.user_id" => "#{current_user.id}" ).recent.page(params[:page]).per(10)
+      @q = Product.ransack(params[:q])
+      @products = @q.result.joins(:user, :category_group).where("category_groups.user_id" => "#{current_user.id}" ).recent.page(params[:page]).per(10)
     else
-      @products = Product.joins(:user, :category).where("categories.user_id" => "#{current_user.id}" ).recent.page(params[:page]).per(10)
+      @q = Product.ransack(params[:q])
+      @products = @q.result.joins(:user, :category).where("categories.user_id" => "#{current_user.id}" ).recent.page(params[:page]).per(10)
     end
   end
 
@@ -93,40 +96,10 @@ class Admin::ProductsController < ApplicationController
     send_file "#{Rails.root}/public/uploads/temp_dir/#{@product.name.upcase}.zip"
   end
 
-  def search
-    if current_user.is_admin?
-      if @query_string.present?
-        search_result = Product.joins(:user).ransack(@search_criteria).result(:distinct => true)
-        @products = search_result.page(params[:page]).per(10)
-      end
-    elsif current_user.is_manager?
-      if @query_string.present?
-        search_result = Product.joins(:user, :category_group).where("category_groups.user_id" => "#{current_user.id}" ).ransack(@search_criteria).result(:distinct => true)
-        @products = search_result.page(params[:page]).per(10)
-      end
-    else
-      if @query_string.present?
-        search_result = Product.joins(:user, :category).where("categories.user_id" => "#{current_user.id}" ).ransack(@search_criteria).result(:distinct => true)
-        @products = search_result.page(params[:page]).per(10)
-      end
-    end
-  end
-
   private
 
   def find_product
     @product = Product.find_by_friendly_id!(params[:id])
-  end
-
-  protected
-
-  def validate_search_key
-    @query_string = params[:keyword].gsub(/\\|\'|\/|\?/, "") if params[:keyword].present?
-    @search_criteria = search_criteria(@query_string)
-  end
-
-  def search_criteria(query_string)
-    { name_or_user_name_cont: query_string }
   end
 
 end
