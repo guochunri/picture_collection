@@ -74,6 +74,9 @@ gem 'rubyzip'
 # deployment
 gem "figaro"
 
+# Date style datepicker
+gem 'bootstrap-datepicker-rails'
+
 # database
 gem 'pg', '~> 0.18'
 

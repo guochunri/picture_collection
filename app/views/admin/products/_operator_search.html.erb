@@ -1,10 +1,45 @@
 <%= search_form_for @q, :url => admin_products_path(@product) do |s| %>
-  <div class="input-group search-box">
-    <p><%= s.search_field :name_or_user_name_cont, :placeholder => "昵称／车牌", :class => "form-control" %></p>
-    <div class="input-group-btn">
-      <button class="btn btn-default" type="submit">
-        <span><i class="fa fa-search"></i></span>
-      </button>
-    </div>
+<div class="input-group search-box" style="width: 380px;">
+  <p><%= s.search_field :name_or_user_name_cont, :placeholder => "搜索昵称、车牌", :class => "form-control" %></p>
+  <div class="input-group-btn">
+    <button class="btn btn-default" type="submit">
+      <span>
+        <i class="fa fa-search"></i>
+      </span>
+    </button>
   </div>
+</div>
+
+<p></p>
+创建时间：
+<div class="span5" id="sandbox-container" style="width: 380px;">
+  <div class="input-daterange input-group">
+    <%= text_field_tag :start, params[:start], :class => "input-sm form-control", :name => "start" %>
+    <span class="input-group-addon">to</span>
+    <%= text_field_tag :end, params[:end], :class => "input-sm form-control", :name => "end" %>
+  </div>
+</div>
+
+<div class="controls" style="float:  right;margin: -110px 400px 0px -420px;">
+  <p></p>
+  只返回审批状态为:
+  <p></p>
+  <section class="field">
+    <% @products.aasm.states.each do |s| %>
+      <label><%= check_box_tag "aasm_states[]", s, Array(params[:aasm_states]).include?(s) %><%= t(s, :scope => + "product.aasm_state") %></label>
+    <% end %>
+  </section>
+</div>
+<div class="text-right">
+  <%= submit_tag "送出筛选", :class => "btn btn-primary" %>
+</div>
 <% end %>
+
+<script>
+  $('#sandbox-container .input-daterange').datepicker({
+    format: "yyyy-mm-dd",
+    language: "<%= I18n.locale %>",
+    keyboardNavigation: false,
+    todayHighlight: true
+  });
+</script>

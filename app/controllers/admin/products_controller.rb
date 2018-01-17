@@ -1,7 +1,6 @@
 class Admin::ProductsController < ApplicationController
   before_action :authenticate_user!
   before_action :require_CustomerManager!
-  before_action :validate_search_key, only: [:search]
   before_action :find_product, only: [:show, :update, :destroy, :approve, :unapprove, :last_approved, :last_unapprove]
   layout "admin"
   require 'rubygems'
@@ -9,15 +8,34 @@ class Admin::ProductsController < ApplicationController
 
   def index
     if current_user.is_admin?
+
       @q = Product.ransack(params[:q])
       @products = @q.result.includes(:user, :category_group, :category).recent.page(params[:page]).per(10)
+
+      search_by_created_at
+
+      search_by_state
+
     elsif current_user.is_manager?
+
       @q = Product.ransack(params[:q])
       @products = @q.result.joins(:user, :category_group).where("category_groups.user_id" => "#{current_user.id}" ).recent.page(params[:page]).per(10)
+
+      search_by_created_at
+
+      search_by_state
+
     else
+
       @q = Product.ransack(params[:q])
       @products = @q.result.joins(:user, :category).where("categories.user_id" => "#{current_user.id}" ).recent.page(params[:page]).per(10)
+
+      search_by_created_at
+
+      search_by_state
+
     end
+
   end
 
   def show
@@ -100,6 +118,26 @@ class Admin::ProductsController < ApplicationController
 
   def find_product
     @product = Product.find_by_friendly_id!(params[:id])
+  end
+
+  def search_by_created_at
+    if params[:start].present?
+     @products = @products.where( "products.created_at >= ?", Date.parse(params[:start]).beginning_of_day )
+    end
+
+    if params[:end].present?
+     @products = @products.where( "products.created_at <= ?", Date.parse(params[:end]).end_of_day )
+    end
+  end
+
+  def search_by_state
+    if Array(params[:aasm_states]).any?
+      @products = @products.by_state(params[:aasm_states])
+    end
+  end
+
+  def product_params
+    params.require(:product).permit(:name, :description, :aasm_state, :category_group_id, :category_id)
   end
 
 end
