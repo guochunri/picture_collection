@@ -1,23 +1,30 @@
-<div style="padding:10px; float:right;">
+<div style="float:right;">
 
   <% case product.aasm_state %>
   <% when "waitting_for_approval" %>
-    <%= link_to("初审通过",
-                approve_admin_product_path(product),
-                class: "btn btn-info btn-sm", method: :post) %>
-    <%= link_to("初审不合格",
-                unapprove_admin_product_path(product),
-                class: "btn btn-danger btn-sm", method: :post) %>
+
+    <% if current_user.is_operator? || current_user.is_admin? %>
+      <%= link_to("初审通过",
+                  approve_admin_product_path(product),
+                  class: "btn btn-info btn-sm", method: :post) %>
+      <%= link_to("初审不合格",
+                  unapprove_admin_product_path(product),
+                  class: "btn btn-danger btn-sm", method: :post) %>
+    <% end %>
 
     <% when "approved" %>
-        <%= link_to("终审通过",
-                    last_approved_admin_product_path(product),
-                    class: "btn btn-info btn-sm", method: :post) %>
-    <%= link_to("终审不合格",
-                last_unapprove_admin_product_path(product),
-                class: "btn btn-danger btn-sm", method: :post) %>
+
+      <% if current_user.is_manager? || current_user.is_admin? %>
+            <%= link_to("终审通过",
+                        last_approved_admin_product_path(product),
+                        class: "btn btn-info btn-sm", method: :post) %>
+        <%= link_to("终审不合格",
+                    last_unapprove_admin_product_path(product),
+                    class: "btn btn-danger btn-sm", method: :post) %>
+      <% end %>
 
   <% when "waitting_for_approval" %>
+
     <span class="label label-default">待审批</span>
 
   <% end %>
