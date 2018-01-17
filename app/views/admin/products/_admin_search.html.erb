@@ -1,26 +1,109 @@
-<%= search_form_for @q, :url => admin_products_path(@product) do |s| %>
-  <div class="input-group search-box">
-    <p><%= s.search_field :name_or_user_name_cont, :placeholder => "昵称／车牌", :class => "form-control" %></p>
+<div class="search row clearfix">
+  <%= search_form_for @q, :url => admin_products_path(@product) do |s| %>
+  <div class="full-page-search input-xxlarge search no-blur ember-text-field">
+    <%= s.search_field :name_or_user_name_cont, :placeholder => "搜索昵称、车牌", :class => "form-control" %>
     <div class="input-group-btn">
-      <button class="btn btn-default" type="submit">
-        <span><i class="fa fa-search"></i></span>
+      <button class="btn search-top" type="submit">
+        <span>
+          <i class="fa fa-search"></i>
+        </span>
       </button>
     </div>
   </div>
-  <div class="input-group search-box">
-    <p><%= s.search_field :category_group_name_cont, :placeholder => "请输入项目名称", :class => "form-control" %></p>
-    <div class="input-group-btn">
-      <button class="btn btn-default" type="submit">
-        <span><i class="fa fa-search"></i></span>
-      </button>
-    </div>
-  </div>
-  <div class="input-group search-box">
-    <p><%= s.search_field :category_name_cont, :placeholder => "请输入分类名称", :class => "form-control" %></p>
-    <div class="input-group-btn">
-      <button class="btn btn-default" type="submit">
-        <span><i class="fa fa-search"></i></span>
-      </button>
+
+  <div class="search-advanced">
+    <button class="search-advanced-btn" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+      <i class="fa fa-caret-down"></i>
+      高级搜索
+    </button>
+    <div class="collapse" id="collapseExample">
+      <div class="search-advanced-options">
+        <div class="container">
+          <div class="control-group pull-left">
+            <label for="search-posted-by" class="control-label">类型</label>
+            <div class="controls">
+              <div style="width: 210px;">
+                <div class="input-group search-box">
+                  <p><%= s.search_field :category_group_name_cont, :placeholder => "", :class => "form-control" %></p>
+                  <div class="input-group-btn">
+                    <button class="btn" type="submit">
+                      <span>
+                        <i class="fa fa-search"></i>
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="control-group pull-left">
+            <label for="search-in-category" class="control-label">分类名称</label>
+            <div class="controls">
+              <div id="ember1964" class="ember-view">
+                <div style="width: 210px;">
+                  <div class="input-group search-box">
+                    <p><%= s.search_field :category_name_cont, :placeholder => "", :class => "form-control" %></p>
+                    <div class="input-group-btn">
+                      <button class="btn" type="submit">
+                        <span>
+                          <i class="fa fa-search"></i>
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="control-group pull-left">
+            <label for="search-in-options" class="control-label">只返回审批状态为...</label>
+            <p></p>
+            <div class="controls">
+              <section class="field">
+                <% @products.aasm.states.each do |s| %>
+                  <label><%= check_box_tag "aasm_states[]", s, Array(params[:aasm_states]).include?(s) %><%= t(s, :scope => + "product.aasm_state") %></label>
+                <% end %>
+              </section>
+
+            </div>
+          </div>
+          <div class="control-group pull-left">
+            <label for="search-in-category" class="control-label">创建时间</label>
+            <div class="controls">
+              <div class="select2-container combobox ember-view" id="s2id_status" style="width: 380px;">
+                <div class="span5" id="sandbox-container">
+                  <div class="input-daterange input-group">
+                    <%= text_field_tag :start, params[:start], :class => "input-sm form-control", :name => "start" %>
+                    <span class="input-group-addon">to</span>
+                    <%= text_field_tag :end, params[:end], :class => "input-sm form-control", :name => "end" %>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <p></p>
+              <br><br>
+              <div class="control-group pull-left">
+                <%= submit_tag "送出筛选", :class => "btn btn-primary" %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
 <% end %>
+</div>
+
+
+<script>
+  $('#sandbox-container .input-daterange').datepicker({
+    format: "yyyy-mm-dd",
+    language: "<%= I18n.locale %>",
+    keyboardNavigation: false,
+    todayHighlight: true
+  });
+</script>

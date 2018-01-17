@@ -74,6 +74,9 @@ gem 'rubyzip'
 # deployment
 gem "figaro"
 
+# Date style datepicker
+gem 'bootstrap-datepicker-rails'
+
 group :development, :test do
   gem 'pry'
   gem 'awesome_rails_console'

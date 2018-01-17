@@ -11,6 +11,7 @@ class Product < ApplicationRecord
   before_validation :generate_friendly_id, :on => :create
 
   scope :recent, -> { order("created_at DESC") }
+  scope :by_state, ->(s){ where( :aasm_state => s ) }
 
   def to_param
     self.friendly_id

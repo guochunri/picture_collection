@@ -1,3 +1,116 @@
 // Place all the styles related to the admin::products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.search.row {
+    margin-bottom: 15px;
+    padding: 0px 20px 0px 15px;
+    .search-top {
+      float: right;
+      margin-top: -35px;
+      margin-right: -40px;
+      margin-bottom: 10px;
+      padding-top: 6px;
+      height: 35px;
+    }
+}
+.search.row input {
+    height: 35px;
+    padding-top: 6px;
+    margin: auto;
+}
+
+body .input-xxlarge {
+    width: 530px;
+}
+body input, body textarea {
+    margin-left: 0;
+}
+body input {
+    width: 210px;
+}
+
+body input, body button, body select, body textarea {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.clearfix:before, .nav-pills:before, .container:before, .wrap:before, .clearfix:after, .nav-pills:after, .container:after, .wrap:after {
+    display: table;
+    content: " ";
+}
+.clearfix:after, .nav-pills:after, .container:after, .wrap:after {
+    clear: both;
+}
+.clearfix:before, .nav-pills:before, .container:before, .wrap:before, .clearfix:after, .nav-pills:after, .container:after, .wrap:after {
+    display: table;
+    content: " ";
+}
+.search-advanced {
+    margin-bottom: 15px;
+}
+.search-advanced .search-advanced-btn {
+    padding: 8px 10px;
+    width: 100%;
+    text-align: left;
+    font-weight: bold;
+}
+
+.btn {
+    border: none;
+    color: #222;
+    font-weight: normal;
+    background: #e9e9e9;
+}
+
+.btn {
+    display: inline-block;
+    margin: 0;
+    padding: 6px 12px;
+    font-weight: 500;
+    font-size: 1em;
+    line-height: 18px;
+    text-align: center;
+    cursor: pointer;
+    transition: all .25s;
+}
+
+.search-advanced .search-advanced-options {
+    border: 1px solid #e9e9e9;
+    padding: 10px;
+}
+.search-advanced .search-advanced-options .control-group.pull-left {
+    width: 50%;
+}
+
+body .control-group {
+    margin-bottom: 9px;
+}
+
+.pull-left {
+    float: left;
+}
+body label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+body label, body input, body button, body select, body textarea {
+    font-size: 0.929em;
+    font-weight: normal;
+    line-height: 18px;
+}
+.search-advanced .search-advanced-options input[type="checkbox"] {
+    height: auto;
+}
+
+body input[type="submit"], body input[type="reset"], body input[type="button"], body input[type="radio"], body input[type="checkbox"] {
+    width: auto;
+}
+body input[type="radio"], body input[type="checkbox"] {
+    margin: 3px 0;
+    line-height: normal;
+    cursor: pointer;
+}
+input[type="checkbox"], input[type="radio"] {
+    box-sizing: border-box;
+    padding: 0;
+}
