@@ -1,6 +1,6 @@
 <div class="comment clearfix">
   <div class="content">
-    <h4><%= comment.comment %></h4>
+    <h4><%= simple_format(comment.comment) %></h4>
     <br>
     <p class="signature"><%= comment.user.name %> <%= comment.created_at.strftime("%Y/%m/%d %I:%M %p") %></p>
   </div>
