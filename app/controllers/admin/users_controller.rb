@@ -5,7 +5,8 @@ class Admin::UsersController < ApplicationController
   layout "admin"
 
   def index
-    @users = User.recent.page(params[:page]).per(10)
+    @q = User.ransack(params[:q])
+    @users = @q.result.recent.page(params[:page]).per(10)
   end
 
   def new
