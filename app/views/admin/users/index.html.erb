@@ -1,3 +1,13 @@
+<div class="input-group search-box">
+  <%= search_form_for @q, :url => admin_users_path do |f| %>
+    <%= f.search_field :name_or_email_cont, :placeholder => "搜索昵称、账号", :class => "form-control" %>
+    <div class="search-users">
+      <button class="btn btn-default" type="submit">
+        <i class="fa fa-search"></i>
+      </button>
+    </div>
+  <% end %>
+</div>
 <div class="pull-right">
   <%= link_to(t('btn-user-new'), new_admin_user_path, :class => 'btn btn-md btn-info')%>
 </div>

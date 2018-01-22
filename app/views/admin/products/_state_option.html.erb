@@ -3,7 +3,7 @@
   <% case product.aasm_state %>
   <% when "waitting_for_approval" %>
 
-    <% if current_user.is_operator? || current_user.is_admin? %>
+    <% if current_user.is_CustomerManager? %>
       <%= link_to("初审通过",
                   approve_admin_product_path(product),
                   class: "btn btn-info btn-sm", method: :post) %>
