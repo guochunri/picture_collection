@@ -18,6 +18,7 @@
 //= require select2_locale_zh-CN
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN
+//= require bootstrap/collapse
 //= require_tree .
 
 $(document).ready(function() {

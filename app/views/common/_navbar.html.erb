@@ -5,12 +5,19 @@
       <a class="navbar-brand" href="/">
         巨会养车
       </a>
+      <button type="button" class="navbar-toggle" data-toggle="collapse"
+              data-target=".navbar-ex1-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+      </button>
     </div>
     <ul class="nav navbar-nav navbar-left">
       <li><%= link_to "上传照片", new_product_path %></li>
     </ul>
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <div class="navbar-collapse navbar-ex1-collapse collapse"  aria-expanded="false">
       <ul class="nav navbar-nav navbar-right">
         <% if !current_user %>
         <!-- <li><%= link_to("注册", new_user_registration_path) %>
