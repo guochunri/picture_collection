@@ -19,7 +19,7 @@
         <!-- 上传图片 -->
 
         <div id="post-list" class="data clearfix">
-          <div  style="width: 500px; float: left; margin-right: 100px;">
+          <div  style="width: 293px; float: left; margin-right: 100px;">
             <%= f.file_field :product_image, :multiple => true, name: 'product_images[image][]', accept: 'image/png,image/gif,image/jpg,image/jpeg', :class => "form-control", :id => "imageclass" %>
           </div>
 
@@ -44,11 +44,11 @@
         <%= f.input :description, :label => t('f-product-description'), input_html: { class: 'height-200' } %>
 
         <div class="field">
-          <%= f.label :category_group_id, t('f-product-category_group') %><br />
+          <%= f.label :category_group_id, t('f-product-category_group') %>
           <%= f.collection_select :category_group_id, CategoryGroup.published.order(:name), :id, :name, include_blank: true %>
         </div>
         <div class="field">
-          <%= f.label :category_id, t('f-product_category') %><br />
+          <%= f.label :category_id, t('f-product_category') %>
           <%= f.grouped_collection_select :category_id, CategoryGroup.published.order(:name), :categories, :name, :id, :name, include_blank: true %>
         </div>
 
