@@ -36,6 +36,11 @@ class Admin::ProductsController < ApplicationController
 
     end
 
+    respond_to do |format|
+      format.html
+      format.xlsx
+    end
+
   end
 
   def show
