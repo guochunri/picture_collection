@@ -71,6 +71,11 @@ gem 'ransack'
 # zip
 gem 'rubyzip'
 
+# Export
+gem 'rubyzip'
+gem 'axlsx'
+gem 'axlsx_rails'
+
 # deployment
 gem "figaro"
 

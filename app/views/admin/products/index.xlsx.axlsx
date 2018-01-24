@@ -1,0 +1,23 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Buttons") do |sheet|
+  sheet.add_row ["昵称", "车牌", "项目名称", "分类", "创建时间", "状态"]
+  if current_user.is_admin?
+
+    @q = Product.ransack(params[:q])
+    @products = @q.result.includes(:user, :category_group, :category).recent
+
+  elsif current_user.is_manager?
+
+    @q = Product.ransack(params[:q])
+    @products = @q.result.joins(:user, :category_group).where("category_groups.user_id" => "#{current_user.id}" ).recent
+
+  else
+
+    @q = Product.ransack(params[:q])
+    @products = @q.result.joins(:user, :category).where("categories.user_id" => "#{current_user.id}" ).recent
+
+  end
+  @products.each do |r|
+    sheet.add_row [r.user.name, r.name.upcase, r.category.category_group.name, r.category.name, r.created_at, t(r.aasm_state, :scope => "product.aasm_state")]
+  end
+end
