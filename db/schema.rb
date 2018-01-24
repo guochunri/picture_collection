@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180114073612) do
+ActiveRecord::Schema.define(version: 20180124010712) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 20180114073612) do
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
     t.integer  "user_id"
+    t.integer  "row_order"
+    t.index ["row_order"], name: "index_categories_on_row_order"
   end
 
   create_table "category_groups", force: :cascade do |t|
@@ -56,6 +58,7 @@ ActiveRecord::Schema.define(version: 20180114073612) do
     t.integer  "category_group_id"
     t.string   "aasm_state",        default: "waitting_for_approval"
     t.string   "friendly_id"
+    t.integer  "number"
     t.index ["aasm_state"], name: "index_products_on_aasm_state"
     t.index ["friendly_id"], name: "index_products_on_friendly_id", unique: true
   end

@@ -1,6 +1,7 @@
 class Product < ApplicationRecord
   validates :name, presence: { message: "请输入车牌号码" }
   validates :category_id, presence: { message: "请选择所属分类" }
+  validates :number, presence: { message: "请输入补漆数量" }
 
   belongs_to :category_group
   belongs_to :category

@@ -19,6 +19,7 @@
     <tr>
       <th><%= t('nickname') %></th>
       <th><%= t('f-product-name')%></th>
+      <th><%= t('f-product-number')%></th>
       <th><%= t('f-product-category_group') %></th>
       <th><%= t('f-product_category') %></th>
       <th><%= t('created_at')%></th>
@@ -32,6 +33,7 @@
   <tr>
     <td><%= link_to(product.user.name, admin_product_path(product)) %></td>
     <td><%= product.name.upcase %></td>
+    <td><%= product.number%>副</td>
     <td><%= product.category.category_group.name %></td>
     <td><%= product.category.name %></td>
     <td><%= product.created_at.strftime("%Y/%m/%d %I:%M %p") %></td>
