@@ -19,8 +19,6 @@ ActiveRecord::Schema.define(version: 20180124010712) do
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
     t.integer  "user_id"
-    t.integer  "row_order"
-    t.index ["row_order"], name: "index_categories_on_row_order"
   end
 
   create_table "category_groups", force: :cascade do |t|
