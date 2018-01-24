@@ -7,6 +7,7 @@
         </div>
         <div class="panel-body">
           <p><%= t('f-product-name')%>：<%= @product.name.upcase %></p>
+          <p><%= t('f-product-number')%>：<%= @product.number %> 副</p>
           <p><%= t('f-product-description')%>：<%= simple_format(@product.description) %></p>
           <p><%= t('f-product-category_group')%>：<%= @product.category.category_group.name %>
             -
