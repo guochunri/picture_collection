@@ -5,63 +5,60 @@
       <div class="panel-body">
         <!-- 判断是否为new页面 -->
         <% if @product.new_record? %>
-      <% else %>
-        <!-- 显示商品图片 -->
-        <div class='group'>
-          <% if @product.product_images.present? %>
-          <% @product.product_images.each do |p| %>
-          <%= image_tag p.image.thumb.url %>
-          <% end %>
-          <% end %>
-        </div>
+        <% else %>
+          <!-- 显示商品图片 -->
+          <div class='group'>
+            <% if @product.product_images.present? %>
+              <% @product.product_images.each do |p| %>
+                <%= image_tag p.image.thumb.url %>
+              <% end %>
+            <% end %>
+          </div>
         <% end %>
         <br>
         <!-- 上传图片 -->
-
-        <div id="post-list" class="data clearfix">
-          <div  style="width: 293px; float: left; margin-right: 100px;">
-            <%= f.file_field :product_image, :multiple => true, name: 'product_images[image][]', accept: 'image/png,image/gif,image/jpg,image/jpeg', :class => "form-control", :id => "imageclass" %>
+        <div class="col-xs-12 col-sm-6 col-sm-offset-2 col-md-8 col-md-offset-2 ">
+          <div id="post-list" class="data clearfix">
+            <div>
+              <%= f.file_field :product_image, :multiple => true, name: 'product_images[image][]', accept: 'image/png,image/gif,image/jpg,image/jpeg', :class => "form-control", :id => "imageclass" %>
+            </div>
+            <div class="click">
+              <a id="my-add-click">
+                <i class="fa fa-plus-square fa-2x"></i>
+              </a>
+            </div>
           </div>
 
-          <div class="click">
-            <!-- <a id="my-remove-click"><i class="fa fa-minus-square fa-3x" style="margin-right: 30px;"></i></a> -->
-            <a id="my-add-click"><i class="fa fa-plus-square fa-3x"></i></a>
+          <script>
+            // $("#my-remove-click").click(function(){   $("#imageclass").remove(); })
+            $("#my-add-click").click(function () {
+              $("#post-list").after('<%= f.file_field :product_image, :multiple => true, name: 'product_images[image][]', accept: 'image/png,image/gif,image/jpg,image/jpeg', :class => "form-control", :id => "imageclass" %>');
+            })
+          </script>
+
+          <p></p>
+          <%= f.input :name, :label => t('f-product-name'), :placeholder => "车牌格式：粤A-JH666" %>
+          <%= f.input :number, :label => t('f-product-number'), :placeholder => "请输入补漆数量" %>
+          <%= f.input :description, :label => t('f-product-description') %>
+          <div class="field">
+            <%= f.label :category_group_id, t('f-product-category_group') %>
+            <%= f.collection_select :category_group_id, CategoryGroup.published.order(:name), :id, :name, include_blank: true %>
           </div>
+          <div class="field">
+            <%= f.label :category_id, t('f-product_category') %>
+            <%= f.grouped_collection_select :category_id, CategoryGroup.published.order(:name), :categories, :name, :id, :name, include_blank: true %>
+          </div>
+          <br>
         </div>
-
-        <script>
-          // $("#my-remove-click").click(function(){
-          //   $("#imageclass").remove();
-          // })
-
-          $("#my-add-click").click(function(){
-            $("#post-list").after('<%= f.file_field :product_image, :multiple => true, name: 'product_images[image][]', accept: 'image/png,image/gif,image/jpg,image/jpeg', :class => "form-control", :id => "imageclass" %>');
-          })
-
-        </script>
-        <p></p>
-        <%= f.input :name, :label => t('f-product-name'), :placeholder => "车牌格式参照：粤A-JH666", input_html: { class: 'product_mumber' } %>
-        <%= f.input :number, :label => t('f-product-number'), :placeholder => "请输入补漆数量", input_html: {  class: 'product_mumber' }  %>
-        <%= f.input :description, :label => t('f-product-description'), input_html: { class: 'height-200' } %>
-
-        <div class="field">
-          <%= f.label :category_group_id, t('f-product-category_group') %>
-          <%= f.collection_select :category_group_id, CategoryGroup.published.order(:name), :id, :name, include_blank: true %>
-        </div>
-        <div class="field">
-          <%= f.label :category_id, t('f-product_category') %>
-          <%= f.grouped_collection_select :category_id, CategoryGroup.published.order(:name), :categories, :name, :id, :name, include_blank: true %>
-        </div>
-
       </div>
     </div>
-    <%= f.submit t('f-submit'), data: { disable_with: "Submitting..." }, class: "btn btn-primary" %>
-    <% end %>
-    <br>
+    <%= f.submit t('f-submit'), data: { disable_with: "Submitting..." }, class: "btn btn-primary pull-right" %>
+  <% end %>
+  <br>
   </div>
 </div>
 
 <script>
-  $("#product_category_group_id").select2( { theme: "bootstrap", language: "zh-CN", placeholder: "请选择项目", width: '15%'} );
-  $("#product_category_id").select2( { theme: "bootstrap", language: "zh-CN" } );
+$("#product_category_group_id").select2({theme: "bootstrap", language: "zh-CN", placeholder: "请选择项目", width: '100%'});
+$("#product_category_id").select2({theme: "bootstrap", language: "zh-CN", placeholder: "请选择分类", width: '100%'});
 </script>
