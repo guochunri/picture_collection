@@ -13,9 +13,11 @@
           <span class="icon-bar"></span>
       </button>
     </div>
-    <ul class="nav navbar-nav navbar-left">
-      <li><%= link_to "上传照片", new_product_path %></li>
-    </ul>
+    <% if !current_user || !current_user.is_operator? %>
+      <ul class="nav navbar-nav navbar-left">
+        <li><%= link_to "上传照片", new_product_path %></li>
+      </ul>
+    <% end %>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="navbar-collapse navbar-ex1-collapse collapse"  aria-expanded="false">
       <ul class="nav navbar-nav navbar-right">
