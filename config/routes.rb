@@ -21,6 +21,9 @@ Rails.application.routes.draw do
     end
 
     resources :products do
+      collection do
+        post :bulk_update
+      end
       member do
         get :download
         post :approve

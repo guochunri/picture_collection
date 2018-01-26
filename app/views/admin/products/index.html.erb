@@ -13,46 +13,74 @@
 <p>
 <%= link_to "汇出 Excel", admin_products_path(:format => :xlsx), :class => "btn btn-default pull-right" %>
 </p>
-<table class='table table-hover'>
-  <!--=== 商品列表标题 ===-->
-  <thead>
-    <tr>
-      <th><%= t('nickname') %></th>
-      <th><%= t('f-product-name')%></th>
-      <th><%= t('f-product-number')%></th>
-      <th><%= t('f-product-category_group') %></th>
-      <th><%= t('f-product_category') %></th>
-      <th><%= t('created_at')%></th>
-      <th><%= t('f-procuct-status') %></th>
-      <th><%= t('f-options') %></th>
-    </tr>
-  </thead>
+<%= form_tag bulk_update_admin_products_path, :class => "form-inline" do %>
+  <table class='table table-hover'>
+    <!--=== 商品列表标题 ===-->
+    <thead>
+      <tr>
+        <th><%= check_box_tag "全选", "1", false, :id => "toggle_all" %></th>
+        <th><%= t('nickname') %></th>
+        <th><%= t('f-product-name')%></th>
+        <th><%= t('f-product-number')%></th>
+        <th><%= t('f-product-category_group') %></th>
+        <th><%= t('f-product_category') %></th>
+        <th><%= t('created_at')%></th>
+        <th><%= t('f-procuct-status') %></th>
+        <th><%= t('f-options') %></th>
+      </tr>
+    </thead>
 
-  <!--=== 商品列表內容 ===-->
-  <% @products.each do |product| %>
-  <tr>
-    <td><%= link_to(product.user.name, admin_product_path(product)) %></td>
-    <td><%= product.name.upcase %></td>
-    <td><%= product.number%>副</td>
-    <td><%= product.category.category_group.name %></td>
-    <td><%= product.category.name %></td>
-    <td><%= product.created_at.strftime("%Y/%m/%d %I:%M %p") %></td>
-    <td> <%= t(product.aasm_state, :scope => "product.aasm_state") %> </td>
-    <!--=== 操作选项 ===-->
-    <td>
-      <div class="action-box">
-        <% if current_user.is_admin? %>
-          <%= link_to(admin_product_path(product), class: "btn btn-md btn-default", :method => :delete, :data => { :confirm => "Are you sure?" }) do%>
-            <span class="fa fa-trash"></span>
+    <!--=== 商品列表內容 ===-->
+    <% @products.each do |product| %>
+    <tr>
+      <td><%= check_box_tag "ids[]", product.id %></td>
+      <td><%= link_to(product.user.name, admin_product_path(product)) %></td>
+      <td><%= product.name.upcase %></td>
+      <td><%= product.number%>副</td>
+      <td><%= product.category.category_group.name %></td>
+      <td><%= product.category.name %></td>
+      <td><%= product.created_at.strftime("%Y/%m/%d %I:%M %p") %></td>
+      <td> <%= t(product.aasm_state, :scope => "product.aasm_state") %> </td>
+      <!--=== 操作选项 ===-->
+      <td>
+        <div class="action-box">
+          <% if current_user.is_admin? %>
+            <%= link_to(admin_product_path(product), class: "btn btn-md btn-default", :method => :delete, :data => { :confirm => "确定要删除吗?" }) do%>
+              <span class="fa fa-trash"></span>
+            <% end %>
           <% end %>
-        <% end %>
-        <%= link_to(download_admin_product_path(product), class: "btn btn-md btn-default", method: :get) do %>
-          <span class="fa fa-cloud-download"></span>
-        <% end %>
-        <!-- <%= render "admin/products/state_option", product: product %> -->
-      </div>
-    </td>
-  </tr>
-  <% end %>
-</table>
+          <%= link_to(download_admin_product_path(product), class: "btn btn-md btn-default", method: :get) do %>
+            <span class="fa fa-cloud-download"></span>
+          <% end %>
+          <!-- <%= render "admin/products/state_option", product: product %> -->
+        </div>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+  <p>
+    <% if current_user.is_admin? || current_user.is_manager? %>
+      <%= select_tag :aasm_state, options_for_select( Product.aasm.states.map{ |s| [t(s, :scope => + "product.aasm_state"), s] }), :class => "form-control" %>
+      <%= submit_tag t(:bulk_update), :class => "btn btn-primary" %>
+    <% elsif current_user.is_operator? %>
+      <%= select_tag :aasm_state, options_for_select( ['waitting_for_approval', 'approved', 'rejected'].map{ |s| [t(s, :scope => + "product.aasm_state"), s] }), :class => "form-control"%>
+      <%= submit_tag t(:bulk_update), :class => "btn btn-primary" %>
+    <% end %>
+    <% if current_user.is_admin? %>
+      <%= submit_tag t(:bulk_delete), :class => "btn btn-danger", :data => { :confirm => "确定要删除所选项吗?" } %>
+    <% end %>
+  </p>
+<% end %>
+
+  <script>
+    // 这个 javascript 会绑事件在 #toggle_all 核选方块上，来做全选效果
+    $("#toggle_all").click(function(){
+      if ( $(this).prop("checked") ) {
+        $("input[name='ids[]']").prop("checked", true);
+      } else {
+        $("input[name='ids[]']").prop("checked", false);
+      }
+    })
+  </script>
+
 <%= paginate @products %>
