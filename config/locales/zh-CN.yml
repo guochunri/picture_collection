@@ -41,6 +41,9 @@ zh-CN:
   btn-hide: 隐藏
   btn-publish: 公开
 
+  bulk_update: 批次审核
+  bulk_delete: 批次删除
+
   # kaminari
   views:
     pagination:

@@ -119,6 +119,26 @@ class Admin::ProductsController < ApplicationController
     send_file "#{Rails.root}/public/uploads/temp_dir/#{@product.name.upcase}.zip"
   end
 
+  def bulk_update
+    total = 0
+    Array(params[:ids]).each do |event_id|
+      product = Product.find(event_id)
+
+      if params[:commit] == I18n.t(:bulk_update)
+        product.aasm_state = params[:aasm_state]
+        if product.save
+          total += 1
+        end
+      elsif params[:commit] == I18n.t(:bulk_delete)
+        product.destroy
+        total += 1
+      end
+    end
+
+    flash[:alert] = "成功完成 #{total} 笔操作"
+    redirect_to admin_products_path
+  end
+
   private
 
   def find_product
