@@ -30,6 +30,8 @@ Rails.application.routes.draw do
         post :unapprove
         post :last_approved
         post :last_unapprove
+        post "like" => "products#like"
+        post "unlike" => "products#unlike"
       end
       resources :comments
     end

@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :comments
   has_one :category_group
   has_one :category
+  has_many :likes, :dependent => :destroy
+  has_many :liked_prosucts, :through => :likes, :source => :product
 
   scope :recent, -> { order("created_at DESC") }
 

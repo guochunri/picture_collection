@@ -17,6 +17,25 @@
         <div class="panel-footer">
           <%= render "admin/products/state_option", product: @product %>
           <h6><%= @product.created_at.strftime("%Y/%m/%d %I:%M %p") %></h6>
+
+          <div class="admin-like">
+            <!-- <% if @product.liked_users.any? %>
+              <%= @product.liked_users.map{ |u| u.name }.join(",") %> 点了赞
+            <% end %> -->
+
+            <% if current_user # 有登入才可以按讚 %>
+              <% if @product.find_like(current_user) %>
+                <%= link_to(unlike_admin_product_path(@product), :method => :post, :class => "btn btn-md btn-danger") do %>
+                  <span class="fa fa-times"></span>
+                <% end %>
+              <% else %>
+                <%= link_to(like_admin_product_path(@product), :method => :post, :class => "btn btn-md btn-default") do %>
+                  <span class="fa fa-times"></span>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+
           <!-- <%= link_to(t('btn-edit'), edit_product_path(@product), class: "btn btn-primary pull-right")%> -->
         </div>
       </div>
