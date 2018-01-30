@@ -1,7 +1,7 @@
 class Admin::ProductsController < ApplicationController
   before_action :authenticate_user!
   before_action :require_CustomerManager!
-  before_action :find_product, only: [:show, :update, :destroy, :approve, :unapprove, :last_approved, :last_unapprove]
+  before_action :find_product, only: [:show, :update, :destroy, :approve, :unapprove, :last_approved, :last_unapprove, :like, :unlike]
   layout "admin"
   require 'rubygems'
   require 'zip'
@@ -70,6 +70,21 @@ class Admin::ProductsController < ApplicationController
   def last_unapprove
     @product.final_disagree!
     redirect_to :back
+  end
+
+  def like
+    unless @product.find_like(current_user)  # 如果已经按讚过了，就略过不再新增
+      Like.create( :user => current_user, :product => @product)
+    end
+
+    redirect_to admin_product_path
+  end
+
+  def unlike
+    like = @product.find_like(current_user)
+    like.destroy
+
+    redirect_to admin_product_path
   end
 
   def add_to_zip_file(zip_file_name,file_path)

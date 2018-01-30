@@ -10,6 +10,13 @@ class Product < ApplicationRecord
   has_many :comments, dependent: :destroy
   accepts_nested_attributes_for :product_images
   before_validation :generate_friendly_id, :on => :create
+  
+  has_many :likes, :dependent => :destroy
+  has_many :liked_users, :through => :likes, :source => :user
+
+  def find_like(user)
+    self.likes.where( :user_id => user.id ).first
+  end
 
   scope :recent, -> { order("created_at DESC") }
   scope :by_state, ->(s){ where( :aasm_state => s ) }
