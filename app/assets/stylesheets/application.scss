@@ -311,7 +311,7 @@ body {
   }
 
   .admin-like {
-    margin: -35px 0px 0px 150px;
+        margin: -28px -16px 0px 0px;
   }
   /*===== 操作选项 =====*/
   .action-box {
@@ -383,6 +383,29 @@ body {
     }
   }
 }
+
+/*===== 精选商品图示 =====*/
+  .chosen-box {
+    position: absolute;
+    border-radius: 45px;
+    top: 22px;
+    left: 27px;
+    width: 50px;
+    height: 50px;
+    padding-top: 11px;
+    padding-left: 2px;
+    color: #fff;
+    background-color: #e74c3c;;
+    border: 2.5px solid #ecf0f1;
+    opacity: 0.85;
+    z-index: 1;
+  }
+
+  .location {
+    top: 15px;
+    left: 30px;
+  }
+
 /*===== Admin-Form 后台表单设置 =====*/
 .admin-data-box {
   hr {

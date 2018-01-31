@@ -87,6 +87,7 @@ zh-CN:
   # 产品管理
   nickname: 昵称
   created_at: 创建时间
+  product-chosen: 不合格
 
   # 集客管理 #
   category-group-index: 集客一览

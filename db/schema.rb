@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180130054448) do
+ActiveRecord::Schema.define(version: 20180131015807) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -27,13 +27,6 @@ ActiveRecord::Schema.define(version: 20180130054448) do
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.integer  "user_id"
-  end
-
-  create_table "category_relationships", force: :cascade do |t|
-    t.integer  "category_id"
-    t.integer  "user_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
   end
 
   create_table "comments", force: :cascade do |t|
@@ -58,8 +51,9 @@ ActiveRecord::Schema.define(version: 20180130054448) do
   create_table "product_images", force: :cascade do |t|
     t.integer  "product_id"
     t.string   "image"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "is_chosen",  default: false
   end
 
   create_table "products", force: :cascade do |t|

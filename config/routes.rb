@@ -33,7 +33,15 @@ Rails.application.routes.draw do
         post "like" => "products#like"
         post "unlike" => "products#unlike"
       end
+
       resources :comments
+
+      resources :product_images do
+        member do
+          post :chosen
+        end
+      end
+
     end
 
     resources :users

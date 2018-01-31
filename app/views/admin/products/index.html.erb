@@ -54,22 +54,23 @@
           <% end %>
           <!-- <%= render "admin/products/state_option", product: product %> -->
 
-          <!-- <% if product.liked_users.any? %>
-            <%= product.liked_users.map{ |u| u.name }.join(",") %> 点了赞
-          <% end %> -->
+          <!-- 点赞按钮 -->
+              <!-- <% if product.liked_users.any? %>
+                <%= product.liked_users.map{ |u| u.name }.join(",") %> 点了赞
+              <% end %> -->
 
           <% if current_user # 有登入才可以按讚 %>
             <% if product.find_like(current_user) %>
               <%= link_to(unlike_admin_product_path(product), :method => :post, :class => "btn btn-md btn-danger") do %>
-                <span class="fa fa-times"></span>
+                <span class="fa fa-bookmark"></span>
               <% end %>
             <% else %>
               <%= link_to(like_admin_product_path(product), :method => :post, :class => "btn btn-md btn-default") do %>
-                <span class="fa fa-times"></span>
+                <span class="fa fa-bookmark"></span>
               <% end %>
             <% end %>
           <% end %>
-
+          <!-- 点赞按钮 -->
         </div>
       </td>
     </tr>
