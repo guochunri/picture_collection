@@ -35,9 +35,7 @@
             <div class="chosen-box"><%= t('product-chosen') %></div>
           <% end %>
           <!-- 精选样章 -->
-          <%= link_to p.image.url, {:class => "fancybox", :rel => "gallery-images"} do %>
-            <%= image_tag(p.image.url, class: 'list-image') %>
-          <% end %>
+            <%= image_tag(p.image.url, {:modal => "zoomImg", :class => 'list-image'}) %>
         </div>
       <% end %>
 
@@ -45,6 +43,8 @@
       <%= image_tag('http://placehold.it/400x400&text=No Pic', class: 'thumbnail') %>
     <% end %>
   </div>
+
+
 
   <div class="col-md-12">
     <div class="row">
