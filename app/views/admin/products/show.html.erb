@@ -51,9 +51,14 @@
       <% @product_images.each_with_index do |p| %>
       <!-- 显示所有商品图片 -->
         <div class='col-xs-12 col-sm-6 col-md-3 '>
-          <%= link_to (p.image.url), {:class => "fancybox", :rel => "gallery-images"} do %>
-            <%= image_tag(p.image.url, class: 'list-image') %>
+          <!-- 精选样章 -->
+          <% if p.is_chosen %>
+            <div class="chosen-box"><%= t('product-chosen') %></div>
           <% end %>
+          <!-- 精选样章 -->
+          
+            <%= image_tag(p.image.url, {:modal => "zoomImg", :class => 'list-image'}) %>
+
           <!-- 精选按钮 -->
           <div>
             <% if p.is_chosen %>
