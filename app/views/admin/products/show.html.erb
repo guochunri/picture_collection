@@ -25,13 +25,65 @@
         </div>
 
         <div class="panel-body">
-          <p><%= t('f-product-name')%>：<%= @product.name.upcase %></p>
-          <p><%= t('f-product-number')%>：<%= @product.number %> 副</p>
-          <p><%= t('f-product-description')%>：<%= simple_format(@product.description) %></p>
-          <p><%= t('f-product-category_group')%>：<%= @product.category.category_group.name %>
-            -
-            <%= @product.category.name %></p>
-          <p><%= t('f-procuct-status')%>：<%= t(@product.aasm_state, :scope => "product.aasm_state") %></p>
+          <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 category-content">
+            <div class="box">
+              <div class="category-box">
+                <%= image_tag("https://i.loli.net/2018/02/02/5a7436bb9ed4f.png") %>
+              </div>
+              <div class="category-text">
+                <p><%= t('f-product-category_group')%></p>
+                <h3><%= @product.category.category_group.name %> - <%= @product.category.name %></h3>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 category-content">
+            <div class="box">
+              <div class="category-box">
+                <%= image_tag("https://i.loli.net/2018/02/02/5a742ac6c1e60.jpg") %>
+              </div>
+              <div class="category-text">
+                <p><%= t('f-product-name')%></p>
+                <h3><%= @product.name.upcase %></h3>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 category-content">
+            <div class="box">
+              <div class="category-box">
+                <%= image_tag("https://i.loli.net/2018/02/02/5a7432ddcd9e0.png") %>
+              </div>
+              <div class="category-text">
+                <p><%= t('f-product-number')%></p>
+                <h3><%= @product.number %> 副</h3>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 category-content">
+            <div class="box">
+              <div class="category-box">
+                <%= image_tag("https://i.loli.net/2018/02/02/5a74337b7c990.png") %>
+              </div>
+              <div class="category-text">
+                <p><%= t('f-procuct-status')%></p>
+                <h3><%= t(@product.aasm_state, :scope => "product.aasm_state") %></h3>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 category-content">
+            <div class="box">
+              <div class="category-box">
+                <%= image_tag("https://i.loli.net/2018/02/02/5a74349f42248.png") %>
+              </div>
+              <div class="category-text">
+                <p><%= t('f-product-description')%></p>
+                <h3><%= simple_format(@product.description) %></h3>
+              </div>
+            </div>
+          </div> -->
         </div>
 
         <div class="panel-footer">
@@ -56,7 +108,7 @@
             <div class="chosen-box"><%= t('product-chosen') %></div>
           <% end %>
           <!-- 精选样章 -->
-          
+
             <%= image_tag(p.image.url, {:modal => "zoomImg", :class => 'list-image'}) %>
 
           <!-- 精选按钮 -->
