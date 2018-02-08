@@ -242,6 +242,51 @@ body {
 .new-product {
   text-align: center;
 }
+
+.category-content .box {
+  margin: 5px;
+  padding-top: 20px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  position: relative;
+  box-sizing: border-box;
+  height: 100%;
+  background-color: #f9f9fa;
+}
+
+.category-content .box .category-box{
+  text-align: center;
+}
+
+.category-content .box .category-box img {
+  width: 70px;
+  height: 60px;
+}
+
+.category-content {
+  margin-right: -15px;
+
+  /*===== Box 分类图片 =====*/
+  .category-text {
+
+    h3 {
+      text-align: center;
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    p {
+      text-align: center;
+      letter-spacing: 1.5px;
+      margin: 5px 0px -10px 0px;
+    }
+  }
+}
+
+.product-edit {
+  margin-top: -36px;
+  float: right;
+}
 /*===== Control 后台-控制选单 =====*/
 .nav-sidebar {
   margin-top: 30px;

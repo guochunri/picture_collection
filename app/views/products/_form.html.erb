@@ -39,7 +39,7 @@
           <p></p>
           <%= f.input :name, :label => t('f-product-name'), :placeholder => "车牌格式：粤A-JH666" %>
           <%= f.input :number, :label => t('f-product-number'), :placeholder => "请输入补漆数量" %>
-          <%= f.input :description, :label => t('f-product-description') %>
+          <!-- <%= f.input :description, :label => t('f-product-description') %> -->
           <div class="field">
             <%= f.label :category_group_id, t('f-product-category_group') %>
             <%= f.collection_select :category_group_id, CategoryGroup.published.order(:name), :id, :name, include_blank: true %>
