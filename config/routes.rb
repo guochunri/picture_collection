@@ -26,6 +26,7 @@ Rails.application.routes.draw do
       end
       member do
         get :download
+        get :mutil_download
         post :approve
         post :unapprove
         post :last_approved
