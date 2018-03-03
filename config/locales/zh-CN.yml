@@ -43,6 +43,7 @@ zh-CN:
 
   bulk_update: 批次审核
   bulk_delete: 批次删除
+  bulk_download: 批次打包
 
   # kaminari
   views:

@@ -84,6 +84,10 @@
       <%= select_tag :aasm_state, options_for_select( ['waitting_for_approval', 'approved', 'rejected'].map{ |s| [t(s, :scope => + "product.aasm_state"), s] }), :class => "form-control"%>
       <%= submit_tag t(:bulk_update), :class => "btn btn-primary" %>
     <% end %>
+
+    <%= submit_tag t(:bulk_download), :class => "btn btn-warning", method: :get %>
+    <%= link_to "送出打包", mutil_download_admin_product_path(@products), class: "btn btn-md btn-default", method: :get %>
+
     <% if current_user.is_admin? %>
       <%= submit_tag t(:bulk_delete), :class => "btn btn-danger", :data => { :confirm => "确定要删除所选项吗?" } %>
     <% end %>

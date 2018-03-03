@@ -119,6 +119,7 @@ class Admin::ProductsController < ApplicationController
   end
 
   def download
+    FileUtils.rm_rf("#{Rails.root}/public/uploads/temp_dir")
     picture = []
     @product = Product.find_by_friendly_id!(params[:id])
     FileUtils.mkdir_p("#{Rails.root}/public/uploads/temp_dir/#{@product.name.upcase}")
@@ -135,6 +136,7 @@ class Admin::ProductsController < ApplicationController
   end
 
   def bulk_update
+    FileUtils.rm_rf("#{Rails.root}/public/uploads/temp_dir")
     total = 0
     Array(params[:ids]).each do |event_id|
       product = Product.find(event_id)
@@ -147,11 +149,32 @@ class Admin::ProductsController < ApplicationController
       elsif params[:commit] == I18n.t(:bulk_delete)
         product.destroy
         total += 1
+      else params[:commit] == I18n.t(:bulk_download)
+
+        FileUtils.mkdir_p("#{Rails.root}/public/uploads/temp_dir/Bulk_download")
+          picture = []
+          @product = product
+          FileUtils.mkdir_p("#{Rails.root}/public/uploads/temp_dir/Bulk_download/#{@product.name.upcase}")
+          @product.product_images.each do |i|
+            picture << i.image.path
+          end
+          FileUtils.cp(picture, "#{Rails.root}/public/uploads/temp_dir/Bulk_download/#{@product.name.upcase}")
+
+          if (File.exist?("#{Rails.root}/public/uploads/temp_dir/Bulk_download/#{@product.name.upcase}.zip"))
+            File.delete("#{Rails.root}/public/uploads/temp_dir/Bulk_download/#{@product.name.upcase}.zip")
+          end
+          add_to_zip_file("#{Rails.root}/public/uploads/temp_dir/Bulk_download/Bulk_download.zip","#{Rails.root}/public/uploads/temp_dir/Bulk_download")
+
+        total += 1
       end
     end
 
     flash[:alert] = "成功完成 #{total} 笔操作"
     redirect_to admin_products_path
+  end
+
+  def mutil_download
+    send_file "#{Rails.root}/public/uploads/temp_dir/Bulk_download/Bulk_download.zip"
   end
 
   private
