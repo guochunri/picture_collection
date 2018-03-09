@@ -20,7 +20,7 @@
         <div class="col-xs-12 col-sm-6 col-sm-offset-2 col-md-8 col-md-offset-2 ">
           <div id="post-list" class="data clearfix">
             <div>
-              <%= f.file_field :product_image, :multiple => true, name: 'product_images[image][]', :class => "form-control", :id => "imageclass" %>
+              <%= f.file_field :product_image, :multiple => true, name: 'product_images[image][]', accept: 'image/png,image/gif,image/jpg,image/jpeg', :class => "form-control", :id => "imageclass" %>
             </div>
             <div class="click">
               <a id="my-add-click">
@@ -32,7 +32,7 @@
           <script>
             // $("#my-remove-click").click(function(){   $("#imageclass").remove(); })
             $("#my-add-click").click(function () {
-              $("#post-list").after('<%= f.file_field :product_image, :multiple => true, name: 'product_images[image][]', :class => "form-control", :id => "imageclass" %>');
+              $("#post-list").after('<%= f.file_field :product_image, :multiple => true, name: 'product_images[image][]', accept: 'image/png,image/gif,image/jpg,image/jpeg', :class => "form-control", :id => "imageclass" %>');
             })
           </script>
 
