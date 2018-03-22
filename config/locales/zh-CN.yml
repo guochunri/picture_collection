@@ -57,7 +57,7 @@ zh-CN:
   # 集客管理 #
   product-index: 集客一览
   product-new: 新增补漆照片
-  product-edit: 编辑集客
+  product-edit: 编辑
 
   f-product-images: 集客图片
   f-product-name: 车牌
@@ -93,7 +93,7 @@ zh-CN:
   # 集客管理 #
   category-group-index: 集客一览
   category-group-new: 新增集客
-  category-group-edit: 编辑集客
+  category-group-edit: 编辑
 
   f-category-group-name: 集客名称
   f-category-group-categories: 集客供应商一览
